@@ -8,7 +8,56 @@ import tupleTypes.InfoHotel;
 
 
 public class Hotel {
-	
+
+
+     private String nom;
+     private String descripcio;
+     private String nomcategoria;
+     private String nompoblacio;
+
+        public Hotel() {
+        }
+
+
+        public Hotel(String nom) {
+            this.nom = nom;
+        }
+        public Hotel(String nom, String descripcio, String nomcategoria, String nompoblacio) {
+        this.nom = nom;
+        this.descripcio = descripcio;
+        this.nomcategoria = nomcategoria;
+        this.nompoblacio = nompoblacio;
+        }
+
+        public String getNom() {
+            return this.nom;
+        }
+
+        public void setNom(String nom) {
+            this.nom = nom;
+        }
+        public String getDescripcio() {
+            return this.descripcio;
+        }
+
+        public void setDescripcio(String descripcio) {
+            this.descripcio = descripcio;
+        }
+        public String getNomcategoria() {
+            return this.nomcategoria;
+        }
+
+        public void setNomcategoria(String nomcategoria) {
+            this.nomcategoria = nomcategoria;
+        }
+        public String getNompoblacio() {
+            return this.nompoblacio;
+        }
+
+        public void setNompoblacio(String nompoblacio) {
+            this.nompoblacio = nompoblacio;
+        }
+    
 	private static class infoHabitacio {
 		
 		public int numHabitacio;
@@ -21,8 +70,6 @@ public class Hotel {
 		}
 	}
 	
-	private String nom;
-	private String descripció;
 	private ArrayList<PreuTipusHabitacio> preuTipusHabitacio;
 	private ArrayList<Habitacio> habitacions = new ArrayList<Habitacio>();
 	private ArrayList<Comentari> comentaris;
@@ -85,7 +132,7 @@ public class Hotel {
 		
 		String nomCategoria = this.categoria.getNom();
 		
-		InfoHotel result = new InfoHotel(this.nom, this.descripció, nomCategoria, avaluacio);
+		InfoHotel result = new InfoHotel(this.nom, this.descripcio, nomCategoria, avaluacio);
 		return result;
 	}
 	

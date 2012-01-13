@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 13-ene-2012 19:46:24 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="pojos.Poblacio" table="POBLACIO" schema="ROOT">
+        <id name="nom" type="string">
+            <column name="NOM" length="100" />
+            <generator class="assigned" />
+        </id>
+    </class>
+</hibernate-mapping>
