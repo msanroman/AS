@@ -39,9 +39,9 @@ public class TestHibernate {
     public void testPersistenceAndRetrieval() {
         
         Hotel hotel = new Hotel("Jordi", "Pradel", "", "");
-        session.saveOrUpdate(hotel);
+        session.persist(hotel);
         Hotel newHotel = (Hotel) session.get(Hotel.class, "Jordi");
-        
+        session.getTransaction().commit();
         Assert.assertEquals(hotel.getNom(), newHotel.getNom());
         Assert.assertEquals(hotel.getDescripcio(), newHotel.getDescripcio());
     }

@@ -2,14 +2,16 @@
 <!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
 <hibernate-reverse-engineering>
   <schema-selection match-schema="ROOT"/>
-  <table-filter match-name="CLIENT"/>
-  <table-filter match-name="PREU_AMB_DESCOMPTE"/>
-  <table-filter match-name="PREU_AMB_PERCENTATGE"/>
-  <table-filter match-name="COMENTARI"/>
-  <table-filter match-name="POBLACIO"/>
-  <table-filter match-name="RESERVA"/>
   <table-filter match-name="HOTEL"/>
   <table-filter match-name="HABITACIO"/>
-  <table-filter match-name="TIPUS_HABITACIO"/>
+  <table-filter match-name="PREU_AMB_PERCENTATGE"/>
+  <table-filter match-name="CATEGORIA"/>
+  <table-filter match-name="BONS_HOTELS"/>
+  <table-filter match-name="CLIENT"/>
   <table-filter match-name="PREU_TIPUS_HABITACIO"/>
+  <table-filter match-name="COMENTARI"/>
+  <table-filter match-name="POBLACIO"/>
+  <table-filter match-name="PREU_AMB_DESCOMPTE"/>
+  <table-filter match-name="RESERVA"/>
+  <table-filter match-name="TIPUS_HABITACIO"/>
 </hibernate-reverse-engineering>

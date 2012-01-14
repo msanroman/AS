@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 14-ene-2012 13:11:09 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="domainModel.BonsHotels" schema="ROOT" table="BONS_HOTELS">
+    <composite-id class="domainModel.BonsHotelsId" name="id">
+      <key-property name="quotaFixa" type="double">
+        <column name="QUOTA_FIXA" precision="52" scale="0"/>
+      </key-property>
+      <key-property name="quotaVariable" type="double">
+        <column name="QUOTA_VARIABLE" precision="52" scale="0"/>
+      </key-property>
+    </composite-id>
+  </class>
+</hibernate-mapping>
