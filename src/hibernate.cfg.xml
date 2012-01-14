@@ -14,9 +14,10 @@
     <mapping resource="Hibernate/TipusHabitacio.hbm.xml"/>
     <mapping resource="Hibernate/Comentari.hbm.xml"/>
     <mapping resource="Hibernate/Client.hbm.xml"/>
-    <mapping resource="pojos/Reserva.hbm.xml"/>
-    <mapping resource="pojos/PreuTipusHabitacio.hbm.xml"/>
+    <mapping resource="Hibernate/Reserva.hbm.xml"/>
+    <mapping resource="Hibernate/PreuTipusHabitacio.hbm.xml"/>
     <mapping resource="Hibernate/Habitacio.hbm.xml"/>
     <mapping resource="Hibernate/PreuAmbPercentatge.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>
+
