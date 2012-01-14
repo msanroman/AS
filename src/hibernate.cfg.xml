@@ -13,6 +13,7 @@
     <mapping resource="Hibernate/PreuAmbDescompte.hbm.xml"/>
     <mapping resource="Hibernate/TipusHabitacio.hbm.xml"/>
     <mapping resource="Hibernate/Comentari.hbm.xml"/>
+    <mapping resource="Hibernate/Categoria.hbm.xml"/>
     <mapping resource="Hibernate/Client.hbm.xml"/>
     <mapping resource="Hibernate/Reserva.hbm.xml"/>
     <mapping resource="Hibernate/PreuTipusHabitacio.hbm.xml"/>

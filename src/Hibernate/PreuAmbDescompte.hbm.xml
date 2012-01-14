@@ -2,8 +2,8 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 13-ene-2012 19:46:24 by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
-  <class name="domainModel.PreuAmbDescompte" schema="ROOT" table="PREU_AMB_DESCOMPTE">
-    <composite-id class="domainModel.PreuAmbDescompteId" name="id">
+  <class name="Strategies.PreuAmbDescompte" schema="ROOT" table="PREU_AMB_DESCOMPTE">
+    <composite-id class="Strategies.PreuAmbDescompteId" name="id">
       <key-property name="nomHotel" type="string">
         <column length="50" name="NOM_HOTEL"/>
       </key-property>
