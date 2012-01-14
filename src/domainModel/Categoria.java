@@ -1,12 +1,22 @@
 package domainModel;
 
-public class Categoria {
+public class Categoria implements java.io.Serializable {
 
-	private String nom;
+    private String nom;
 
-	public String getNom() {
+    public Categoria() {
+    }
 
-		return this.nom;
-	}
+    public Categoria(String nom) {
+       this.nom = nom;
+    }
+   
+    public String getNom() {
+        return this.nom;
+    }
+    
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
 
 }

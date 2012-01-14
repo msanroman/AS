@@ -9,8 +9,9 @@
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.connection.password">root</property>
     <mapping resource="Hibernate/Hotel.hbm.xml"/>
+    <mapping resource="Hibernate/Categoria.hbm.xml"/>
     <mapping resource="Hibernate/Poblacio.hbm.xml"/>
-    <mapping resource="pojos/PreuAmbDescompte.hbm.xml"/>
+    <mapping resource="Hibernate/PreuAmbDescompte.hbm.xml"/>
     <mapping resource="Hibernate/TipusHabitacio.hbm.xml"/>
     <mapping resource="Hibernate/Comentari.hbm.xml"/>
     <mapping resource="Hibernate/Client.hbm.xml"/>
@@ -18,6 +19,8 @@
     <mapping resource="Hibernate/PreuTipusHabitacio.hbm.xml"/>
     <mapping resource="Hibernate/Habitacio.hbm.xml"/>
     <mapping resource="Hibernate/PreuAmbPercentatge.hbm.xml"/>
+    <mapping resource="Hibernate/Categoria.hbm.xml"/>
+    <mapping resource="Hibernate/BonsHotels.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>
 
