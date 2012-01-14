@@ -8,3 +8,6 @@
 *.war
 *.ear
 /build/
+
+nbproject/*
+/dist/

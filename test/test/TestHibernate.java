@@ -1,21 +1,15 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package test;
 
 import Hibernate.NewHibernateUtil;
-import domainModel.Hotel;
+import domainModel.Categoria;
+import java.sql.SQLException;
 import org.hibernate.Session;
 import org.junit.*;
 
-/**
- *
- * @author Miguel
- */
 public class TestHibernate {
     
     private Session session;
+    private Categoria categoria;
     
     public TestHibernate() {
     }
@@ -38,16 +32,22 @@ public class TestHibernate {
     @Test
     public void testPersistenceAndRetrieval() {
         
-        Hotel hotel = new Hotel("Jordi", "Pradel", "", "");
-        session.persist(hotel);
-        Hotel newHotel = (Hotel) session.get(Hotel.class, "Jordi");
+        categoria = new Categoria("CategoriaTest");
+        session.persist(categoria);
+        Categoria newCategoria = (Categoria) session.get(Categoria.class, "CategoriaTest");
         session.getTransaction().commit();
-        Assert.assertEquals(hotel.getNom(), newHotel.getNom());
-        Assert.assertEquals(hotel.getDescripcio(), newHotel.getDescripcio());
+        Assert.assertEquals(categoria.getNom(), newCategoria.getNom());
     }
     
     @After
-    public void tearDown() {
+    public void tearDown() throws SQLException {
+        
+        session = NewHibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        // Codigo para borrar datos testPersistenceAndRetrieval
+        session.delete("Categoria",categoria);
+        session.getTransaction().commit();
+        
     }
 
 }
