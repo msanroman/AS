@@ -9,7 +9,6 @@
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.connection.password">root</property>
     <mapping resource="Hibernate/Hotel.hbm.xml"/>
-    <mapping resource="Hibernate/Categoria.hbm.xml"/>
     <mapping resource="Hibernate/Poblacio.hbm.xml"/>
     <mapping resource="Hibernate/PreuAmbDescompte.hbm.xml"/>
     <mapping resource="Hibernate/TipusHabitacio.hbm.xml"/>
