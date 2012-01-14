@@ -7,7 +7,7 @@ import tupleTypes.HabitacionsTuple;
 import tupleTypes.InfoHotel;
 
 
-public class Hotel {
+public class Hotel implements java.io.Serializable {
 
 
      private String nom;
@@ -23,10 +23,10 @@ public class Hotel {
             this.nom = nom;
         }
         public Hotel(String nom, String descripcio, String nomcategoria, String nompoblacio) {
-        this.nom = nom;
-        this.descripcio = descripcio;
-        this.nomcategoria = nomcategoria;
-        this.nompoblacio = nompoblacio;
+            this.nom = nom;
+            this.descripcio = descripcio;
+            this.nomcategoria = nomcategoria;
+            this.nompoblacio = nompoblacio;
         }
 
         public String getNom() {
@@ -61,9 +61,9 @@ public class Hotel {
 	private static class infoHabitacio {
 		
 		public int numHabitacio;
-		public float preuHabitacio;
+		public double preuHabitacio;
 		
-		public infoHabitacio(int num, float preu) {
+		public infoHabitacio(int num, double preu) {
 			
 			this.numHabitacio = num;
 			this.preuHabitacio = preu;
@@ -84,20 +84,20 @@ public class Hotel {
 			int capacitat = habitacio.getCapacitat();
 			if (numOcup <= capacitat) {
 				if (habitacio.estaDisponible()) {
-					String tipus = habitacio.getTipus();
+					String tipus = habitacio.getNomtipus();
 					boolean tipusExistent = false;
 					for(HabitacionsTuple h : habitacions) {
-						if (h.tipusHabitacio == tipus) {
+						if (h.tipusHabitacio.equals(tipus)) {
 							h.numeroDisponibles++;
 							tipusExistent = true;
 							break;
 						}
 					}
 					if (!tipusExistent) {
-						float preuTotal = 0;
+						double preuTotal = 0;
 						for(PreuTipusHabitacio p : preuTipusHabitacio) {
-							if (p.getNom() == tipus) {
-								float preu = p.getPreu();
+							if (p.getId().getNomtipus().equals(tipus)) {
+								double preu = p.getPreu();
 								long dies = (dFi.getTime() - dIni.getTime())/TIME_IN_MILLIS;
 								preuTotal = preu*dies;
 								break;
@@ -114,20 +114,18 @@ public class Hotel {
 	public InfoHotel getInfoHotel() {
 		
 		int sumAval = 0;
-		int nComents = 0;
 		for(Comentari c: this.comentaris) {
-			nComents++;
 			int aval = c.getAvaluacio();
 			sumAval += aval;
 		}
 		
 		float avaluacio;
-		if (nComents == 0) {
+		if (this.comentaris.isEmpty()) {
 			
 			avaluacio = 0;
 		}
 		else {
-			avaluacio = sumAval/nComents;
+			avaluacio = sumAval/this.comentaris.size();
 		}
 		
 		String nomCategoria = this.categoria.getNom();
@@ -140,8 +138,8 @@ public class Hotel {
 		
 		int num = 0;
 		for(Habitacio h: this.habitacions) {
-			String tipus = h.getTipus();
-			if (tipus == tipusHabitacio) {
+			String tipus = h.getNomtipus();
+			if (tipus.equals(tipusHabitacio)) {
 				if (h.estaDisponible(dIni, dFi)) {
 					num = h.getNumero();
 					break;
@@ -149,10 +147,10 @@ public class Hotel {
 			}
 		}
 		
-		float preu = 0;
+		double preu = 0;
 		for(PreuTipusHabitacio p: this.preuTipusHabitacio) {
 			
-			if (tipusHabitacio == p.getTipus()) {
+			if (tipusHabitacio.equals(p.getId().getNomtipus())) {
 				preu = p.getPreu();
 				preu = preu*(dFi.getTime() - dIni.getTime())/TIME_IN_MILLIS;
 			}

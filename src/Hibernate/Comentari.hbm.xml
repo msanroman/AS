@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 13-ene-2012 19:46:24 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="domainModel.Comentari" schema="ROOT" table="COMENTARI">
+    <composite-id class="domainModel.ComentariId" name="id">
+      <key-property name="nomHotel" type="string">
+        <column length="50" name="NOM_HOTEL"/>
+      </key-property>
+      <key-property name="dniClient" type="string">
+        <column length="10" name="DNI_CLIENT"/>
+      </key-property>
+      <key-property name="dataComentari" type="timestamp">
+        <column length="26" name="DATA_COMENTARI"/>
+      </key-property>
+    </composite-id>
+    <property name="avaluacio" type="java.lang.Integer">
+      <column name="AVALUACIO"/>
+    </property>
+    <property name="descripcio" type="string">
+      <column length="500" name="DESCRIPCIO"/>
+    </property>
+  </class>
+</hibernate-mapping>

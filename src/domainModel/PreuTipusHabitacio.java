@@ -1,23 +1,35 @@
 package domainModel;
 
-public class PreuTipusHabitacio {
+public class PreuTipusHabitacio implements java.io.Serializable {
 
-	private String nom;
-	private String tipus;
+        private PreuTipusHabitacioId id;
+        private Double preu;
 
-	public String getNom() {
-		// TODO Auto-generated method stub
-		return this.nom;
-	}
+        public PreuTipusHabitacio() {
+        }
 
-	public float getPreu() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
-	public String getTipus() {
+        public PreuTipusHabitacio(PreuTipusHabitacioId id) {
+            this.id = id;
+        }
+        public PreuTipusHabitacio(PreuTipusHabitacioId id, Double preu) {
+            this.id = id;
+            this.preu = preu;
+        }
 
-		return this.tipus;
-	}
+        public PreuTipusHabitacioId getId() {
+            return this.id;
+        }
+
+        public void setId(PreuTipusHabitacioId id) {
+            this.id = id;
+        }
+        public Double getPreu() {
+            return this.preu;
+        }
+
+        public void setPreu(Double preu) {
+            this.preu = preu;
+        }
 
 }

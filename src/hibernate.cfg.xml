@@ -4,20 +4,19 @@
   <session-factory>
     <property name="hibernate.dialect">org.hibernate.dialect.DerbyDialect</property>
     <property name="hibernate.connection.driver_class">org.apache.derby.jdbc.ClientDriver</property>
-    <property name="hibernate.connection.url">jdbc:derby://localhost:1527/AS3</property>
+    <property name="hibernate.connection.url">jdbc:derby://localhost:1527/AS</property>
     <property name="hibernate.current_session_context_class">thread</property>
-
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.connection.password">root</property>
-    <mapping resource="pojos/Hotel.hbm.xml"/>
-    <mapping resource="pojos/Poblacio.hbm.xml"/>
+    <mapping resource="Hibernate/Hotel.hbm.xml"/>
+    <mapping resource="Hibernate/Poblacio.hbm.xml"/>
     <mapping resource="pojos/PreuAmbDescompte.hbm.xml"/>
-    <mapping resource="pojos/TipusHabitacio.hbm.xml"/>
-    <mapping resource="pojos/Comentari.hbm.xml"/>
-    <mapping resource="pojos/Client.hbm.xml"/>
+    <mapping resource="Hibernate/TipusHabitacio.hbm.xml"/>
+    <mapping resource="Hibernate/Comentari.hbm.xml"/>
+    <mapping resource="Hibernate/Client.hbm.xml"/>
     <mapping resource="pojos/Reserva.hbm.xml"/>
     <mapping resource="pojos/PreuTipusHabitacio.hbm.xml"/>
-    <mapping resource="pojos/Habitacio.hbm.xml"/>
-    <mapping resource="pojos/PreuAmbPercentatge.hbm.xml"/>
+    <mapping resource="Hibernate/Habitacio.hbm.xml"/>
+    <mapping resource="Hibernate/PreuAmbPercentatge.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

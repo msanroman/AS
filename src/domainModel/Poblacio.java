@@ -6,7 +6,7 @@ import java.util.Date;
 import tupleTypes.HabitacionsTuple;
 import tupleTypes.InfoHotel;
 
-public class Poblacio {
+public class Poblacio implements java.io.Serializable {
 	
 	private static class hotelsTuple {
 
@@ -30,7 +30,24 @@ public class Poblacio {
 	
 	private ArrayList<Hotel> hotels;
 	
-	public ArrayList<hotelsTuple> buscarHabitacio(Date dIni, Date dFi, int numOcup) throws Exception{
+        private String nom;
+
+        public Poblacio() {
+        }
+
+        public Poblacio(String nom) {
+        this.nom = nom;
+        }
+
+        public String getNom() {
+            return this.nom;
+        }
+
+        public void setNom(String nom) {
+            this.nom = nom;
+        }
+        
+        public ArrayList<hotelsTuple> buscarHabitacio(Date dIni, Date dFi, int numOcup) throws Exception{
 		
 		ArrayList<hotelsTuple> hotels = new ArrayList<hotelsTuple>();
 		for(Hotel h: this.hotels) {
