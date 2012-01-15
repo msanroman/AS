@@ -2,10 +2,7 @@ package domainControllers;
 
 import java.util.Date;
 import java.util.Set;
-import tupleTypes.DadesReserva;
-import tupleTypes.DadesSeleccionarHabitacio;
-import tupleTypes.HabitacioNumPreu;
-import tupleTypes.HotelAmbHabitacions;
+import tupleTypes.*;
 
 public class CtrlReservar {
     private String pob;
@@ -43,8 +40,12 @@ public class CtrlReservar {
     }
     
     public DadesReserva introduirDNI(String dni) {
-        // TODO
-        DadesReserva dadesReserva = null;
+        
+        trIntroduirDNI trIntroduirDNI = new trIntroduirDNI(dni);
+        trIntroduirDNI.executa();
+        DadesClient d = trIntroduirDNI.obtenirResultat();
+        
+        DadesReserva dadesReserva = new DadesReserva(pob, dIni, dFi, hotel, tipusHab, dni, d, preuTotal);
         return dadesReserva;
     }
     
