@@ -6,58 +6,27 @@ import java.util.Date;
 import tupleTypes.DadesClient;
 import tupleTypes.DadesSeleccionarHabitacio;
 import tupleTypes.HotelAmbHabitacions;
-import domainControllers.CtrlReservar;
+import presentation.CtrlReservar;
 
 public class ReservarHabitacioController {
 
-	// ==================================
-	// Fields
-	// ==================================
-
 	private ReservarHabitacioView reservarHabitacioView;
 	private CtrlReservar ctrlReservar;
-
-	// ==================================
-	// Constructors
-	// ==================================
 
 	public ReservarHabitacioController() {
 		reservarHabitacioView = new ReservarHabitacioView(this);
 		ctrlReservar = new CtrlReservar();
 	}
 
-	public ReservarHabitacioController(
-			ReservarHabitacioView _reservarHabitacioView,
-			CtrlReservar _ctrlReservar) {
-
-		this.reservarHabitacioView = _reservarHabitacioView;
-		this.ctrlReservar = _ctrlReservar;
-	}
-
-	// ==================================
-	// Public methods
-	// ==================================
-
 	public void prOkBuscarHabitacio(String poblacio, int numOcupants,
 			Date dataInici, Date dataFi) {
 
 		if (!dataFi.after(dataInici)) {
-			System.out.print("date");
 			reservarHabitacioView.mostraMissatge("Data incorrecta");
 		} else if (numOcupants <= 0) {
-			System.out.print("ocup");
 			reservarHabitacioView.mostraMissatge("Nombre d'ocupants invàlid");
 		} else {
-			ArrayList<String> poblacions = null;
-			try {
-				poblacions = ctrlReservar.obtenirPoblacions();
-			} catch (Exception ex) {
-				if (ex.getMessage().equals("noHiHaPoblacions"))
-					reservarHabitacioView
-							.mostraMissatge("La poblaci� no es troba al sistema");
-				else
-					ex.printStackTrace();
-			}
+			ArrayList<String> poblacions = ctrlReservar.obtenirPoblacions();
 			if (!poblacions.contains(poblacio)) {
 				reservarHabitacioView
 						.mostraMissatge("La poblacio no es troba al sistema");
@@ -66,7 +35,7 @@ public class ReservarHabitacioController {
 				try {
 					resultat = ctrlReservar.buscarHabitacions(poblacio,
 							dataInici, dataFi, numOcupants);
-				} catch (Exception e) {// TODO exception
+				} catch (Exception e) {
 					if (e.getMessage().equals("hotelsNoDisp")) {
 						reservarHabitacioView
 								.mostraMissatge("No hi han hotels disponibles");
@@ -88,17 +57,20 @@ public class ReservarHabitacioController {
 	}
 
 	public void prOkObteDadesClient(String dni) {
+		boolean b = true;
 		DadesClient dadesClient = null;
 		try {
 			dadesClient = ctrlReservar.introduirDNI(dni).dadesClient;
-		} catch (Exception e) { // TODO exception
+		} catch (Exception e) { 
 			if (e.getMessage().equals("clientNoExisteix")) {
 				reservarHabitacioView
 						.mostraMissatge("No existeix al sistema un client amb aquest DNI");
 			} else {
 				e.printStackTrace();
 			}
+			b = false;
 		}
+		if (b)
 		reservarHabitacioView.mostraDadesClient(dadesClient.nom,
 				dadesClient.cognoms, dadesClient.email);
 	}
@@ -110,16 +82,20 @@ public class ReservarHabitacioController {
 	}
 
 	public void prOkPaga(String numTarg, Date dataCad) {
+		boolean b = true;
 		try {
 			ctrlReservar.pagament(numTarg, dataCad);
-		} catch (Exception e) {// TODO exception
+		} catch (Exception e) {
 			if (e.getMessage().equals("serveiNoDisponible")) {
 				reservarHabitacioView
 						.mostraMissatge("Ha hagut un error en el sistema de pagament");
+				
 			} else {
 				e.printStackTrace();
 			}
+			b = false;
 		}
-		reservarHabitacioView.mostraMissatgeReservaOK(this);
+		if (b)
+			reservarHabitacioView.mostraMissatgeReservaOK(this);
 	}
 }

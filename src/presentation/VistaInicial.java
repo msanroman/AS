@@ -16,15 +16,13 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import tupleTypes.HotelAmbHabitacions;
 
 public class VistaInicial extends JFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JLabel lblMessageArea = new JLabel();
@@ -41,7 +39,7 @@ public class VistaInicial extends JFrame {
 
 	private ReservarHabitacioController reservarHabitacioController;
 
-	int state = 0;
+	private int state = 0;
 	private JPanel panelCard;
 	private Box verticalBoxLbl;
 	private JTextField textFieldPoblacio;
@@ -54,16 +52,10 @@ public class VistaInicial extends JFrame {
 	private JTextField textFieldNumOcupants;
 	private JButton btnOk;
 
-	/**
-	 * Launch the application.
-	 */
-
-	/**
-	 * Create the frame.
-	 */
 	public VistaInicial(ReservarHabitacioController _reservarHabitacioController) {
 
 		this.setVisible(true);
+
 		this.reservarHabitacioController = _reservarHabitacioController;
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -73,17 +65,25 @@ public class VistaInicial extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 
-		// End first Panel
-
 		// South panel
 
 		Box verticalBox_1 = Box.createVerticalBox();
 		contentPane.add(verticalBox_1, BorderLayout.SOUTH);
 
-		lblMessageArea = new JLabel("");
-		verticalBox_1.add(lblMessageArea);
+		Box horizontalBox_6 = Box.createHorizontalBox();
+		verticalBox_1.add(horizontalBox_6);
 
-		Component verticalStrut_3 = Box.createVerticalStrut(10);
+		Component horizontalGlue_5 = Box.createHorizontalGlue();
+		horizontalBox_6.add(horizontalGlue_5);
+
+		lblMessageArea = new JLabel("");
+		horizontalBox_6.add(lblMessageArea);
+		lblMessageArea.setHorizontalAlignment(SwingConstants.CENTER);
+
+		Component horizontalGlue_1 = Box.createHorizontalGlue();
+		horizontalBox_6.add(horizontalGlue_1);
+
+		Component verticalStrut_3 = Box.createVerticalStrut(20);
 		verticalBox_1.add(verticalStrut_3);
 
 		Box horizontalBox_4 = Box.createHorizontalBox();
@@ -148,13 +148,16 @@ public class VistaInicial extends JFrame {
 		Component horizontalGlue_3 = Box.createHorizontalGlue();
 		horizontalBox_4.add(horizontalGlue_3);
 
+		// South end
+
+		// Center
 		Box verticalBox_2 = Box.createVerticalBox();
 		contentPane.add(verticalBox_2, BorderLayout.CENTER);
 
+		// First panel
 		Component verticalStrut_2 = Box.createVerticalStrut(20);
 		verticalBox_2.add(verticalStrut_2);
 
-		// First panel
 		Box verticalBox = Box.createVerticalBox();
 
 		Box horizontalBox = Box.createHorizontalBox();
@@ -282,7 +285,7 @@ public class VistaInicial extends JFrame {
 		JPanel firstPanel = new JPanel();
 		firstPanel.add(verticalBox);
 
-		// End south Panel
+		// First end
 
 		panelCard = new JPanel();
 		verticalBox_2.add(panelCard);
@@ -298,12 +301,13 @@ public class VistaInicial extends JFrame {
 		panelCard.add(vistaDadesClient, "client");
 
 		card.show(panelCard, "first");
+
 		state = FIRST;
+
 		habilitarOk(false);
 	}
 
 	public void mostraMissatge(String missatge) {
-		System.out.print("good too");
 		lblMessageArea.setText(missatge);
 		lblMessageArea.setVisible(true);
 	}
@@ -392,7 +396,6 @@ public class VistaInicial extends JFrame {
 
 		contentPane.add(verticalBoxLbl, BorderLayout.NORTH);
 
-		System.out.print("mostraHotels " + state);
 		card.show(panelCard, "hotels");
 
 		state = HOTELS;
@@ -460,6 +463,7 @@ public class VistaInicial extends JFrame {
 		horizontalBox_4.add(horizontalGlue_6);
 
 		card.show(panelCard, "preu");
+
 		state = PREU;
 	}
 
@@ -523,6 +527,7 @@ public class VistaInicial extends JFrame {
 		horizontalBox_2.add(horizontalGlue_5);
 
 		card.show(panelCard, "client");
+
 		state = CLIENT;
 	}
 
@@ -530,7 +535,7 @@ public class VistaInicial extends JFrame {
 		if (exit)
 			System.exit(0);
 		else
-			this.setVisible(false);// TODO
+			this.setVisible(false);
 	}
 
 	public void habilitarOk(boolean habilitat) {
@@ -544,6 +549,7 @@ public class VistaInicial extends JFrame {
 
 		@Override
 		public void keyReleased(KeyEvent arg0) {
+			@SuppressWarnings("unused")
 			JTextField textField = (JTextField) arg0.getSource();
 			if (textFieldPoblacio.getText().length() > 0
 					&& textFieldNumOcupants.getText().length() > 0

@@ -11,7 +11,7 @@ public class ReservarHabitacioView {
 
 	public ReservarHabitacioView(
 			ReservarHabitacioController reservarHabitacioController) {
-		
+
 		vistaInicial = new VistaInicial(reservarHabitacioController);
 	}
 
@@ -21,7 +21,7 @@ public class ReservarHabitacioView {
 
 	public void mostraHotelsTipusHab(
 			ArrayList<HotelAmbHabitacions> informacioHotels) {
-		
+
 		vistaInicial.mostraHotelsTipusHab(informacioHotels);
 	}
 
@@ -33,7 +33,7 @@ public class ReservarHabitacioView {
 		vistaInicial.mostraDadesClient(nom, cognoms, mail);
 	}
 
-	public void tancar() { //TODO tancar
+	public void tancar() {
 		if (vistaInicial != null) {
 			vistaInicial.tancar(true);
 		} else
@@ -42,7 +42,7 @@ public class ReservarHabitacioView {
 
 	public void mostraMissatgeReservaOK(
 			ReservarHabitacioController reservarHabitacioController) {
-		
+
 		vistaInicial.tancar(false);
 		vistaMissatgeFiOk = new VistaMissatgeFiOk(reservarHabitacioController);
 	}
