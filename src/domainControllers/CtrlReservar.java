@@ -3,6 +3,8 @@ package domainControllers;
 import java.util.Date;
 import java.util.Set;
 import tupleTypes.DadesReserva;
+import tupleTypes.DadesSeleccionarHabitacio;
+import tupleTypes.HabitacioNumPreu;
 import tupleTypes.HotelAmbHabitacions;
 
 public class CtrlReservar {
@@ -27,8 +29,17 @@ public class CtrlReservar {
         return hotelsAmbHabitacions;
     }
     
-    public void seleccionarHabitacio() {
-        // TODO
+    public DadesSeleccionarHabitacio seleccionarHabitacio(String hotel, String tipusHab) {
+        
+        trSeleccionarHabitacio seleccionarHabitacio = new trSeleccionarHabitacio(hotel, tipusHab, this.dIni, this.dFi);
+        seleccionarHabitacio.executa();
+        this.hotel = hotel;
+        this.tipusHab = tipusHab;
+        HabitacioNumPreu dades = seleccionarHabitacio.obtenirResultat();
+        this.numHab = dades.numHab;
+        this.preuTotal = dades.preu;
+        DadesSeleccionarHabitacio result = new DadesSeleccionarHabitacio(this.pob, this.dIni, this.dFi, this.hotel, this.tipusHab, this.preuTotal);
+        return result;
     }
     
     public DadesReserva introduirDNI(String dni) {
