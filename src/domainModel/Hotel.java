@@ -2,6 +2,9 @@ package domainModel;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+import javax.sound.midi.Soundbank;
 import tupleTypes.HabitacioNumPreu;
 
 import tupleTypes.HabitacionsTuple;
@@ -58,10 +61,27 @@ public class Hotel implements java.io.Serializable {
         public void setNompoblacio(String nompoblacio) {
             this.nompoblacio = nompoblacio;
         }
+        
+        public Set<PreuTipusHabitacio> getPreuTipusHabitacio() {
+            return this.preuTipusHabitacio;
+        }
+        
+        public void setPreuTipusHabitacio(Set<PreuTipusHabitacio> preus){
+            this.preuTipusHabitacio = preus;    
+        }
     
-	private ArrayList<PreuTipusHabitacio> preuTipusHabitacio;
-	private ArrayList<Habitacio> habitacions = new ArrayList<Habitacio>();
-	private ArrayList<Comentari> comentaris;
+	private Set<PreuTipusHabitacio> preuTipusHabitacio = new HashSet();
+    private Set<Habitacio> habitacions = new HashSet();
+
+    public Set<Habitacio> getHabitacions() {
+        return habitacions;
+    }
+
+    public void setHabitacions(Set<Habitacio> habitacions) {
+        this.habitacions = habitacions;
+    }
+	
+    private ArrayList<Comentari> comentaris;
 	private Categoria categoria;
 	private static long TIME_IN_MILLIS = 3600000;
 	
@@ -130,7 +150,7 @@ public class Hotel implements java.io.Serializable {
 			String tipus = h.getNomtipus();
 			if (tipus.equals(tipusHabitacio)) {
 				if (h.estaDisponible(dIni, dFi)) {
-					num = h.getNumero();
+					num = h.getId().getNumero();
 					break;
 				}
 			}
@@ -142,6 +162,7 @@ public class Hotel implements java.io.Serializable {
 			if (tipusHabitacio.equals(p.getId().getNomtipus())) {
 				preu = p.getPreu();
 				preu = preu*(dFi.getTime() - dIni.getTime())/TIME_IN_MILLIS;
+                                System.out.println("----->" + preu);
 			}
 		}
 		
