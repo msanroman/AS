@@ -3,9 +3,10 @@ package presentation;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Component;
-import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.sql.Date;
 import java.util.ArrayList;
 
@@ -18,7 +19,6 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import tupleTypes.HotelAmbHabitacions;
-import javax.swing.SwingConstants;
 
 public class VistaInicial extends JFrame {
 
@@ -52,6 +52,7 @@ public class VistaInicial extends JFrame {
 	private JTextField textFieldDataFiMes;
 	private JTextField textFieldDataFiAny;
 	private JTextField textFieldNumOcupants;
+	private JButton btnOk;
 
 	/**
 	 * Launch the application.
@@ -82,16 +83,19 @@ public class VistaInicial extends JFrame {
 		lblMessageArea = new JLabel("");
 		verticalBox_1.add(lblMessageArea);
 
+		Component verticalStrut_3 = Box.createVerticalStrut(10);
+		verticalBox_1.add(verticalStrut_3);
+
 		Box horizontalBox_4 = Box.createHorizontalBox();
 		verticalBox_1.add(horizontalBox_4);
 
 		Component horizontalGlue_2 = Box.createHorizontalGlue();
 		horizontalBox_4.add(horizontalGlue_2);
 
-		JButton btnOk_1 = new JButton("Ok");
-		horizontalBox_4.add(btnOk_1);
+		btnOk = new JButton("Ok");
+		horizontalBox_4.add(btnOk);
 
-		btnOk_1.addActionListener(new ActionListener() {
+		btnOk.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {// TODO
 				switch (state) {
@@ -99,15 +103,15 @@ public class VistaInicial extends JFrame {
 					reservarHabitacioController.prOkBuscarHabitacio(
 							textFieldPoblacio.getText(),
 							Integer.parseInt(textFieldNumOcupants.getText()),
-							new Date(Integer.parseInt(textFieldDataIniciDia
+							new Date(Integer.parseInt(textFieldDataIniciAny
 									.getText()), Integer
 									.parseInt(textFieldDataIniciMes.getText()),
-									Integer.parseInt(textFieldDataIniciAny
+									Integer.parseInt(textFieldDataIniciDia
 											.getText())),
-							new Date(Integer.parseInt(textFieldDataFiDia
+							new Date(Integer.parseInt(textFieldDataFiAny
 									.getText()), Integer
 									.parseInt(textFieldDataFiMes.getText()),
-									Integer.parseInt(textFieldDataFiAny
+									Integer.parseInt(textFieldDataFiDia
 											.getText())));
 					break;
 				case HOTELS:
@@ -120,7 +124,9 @@ public class VistaInicial extends JFrame {
 							.getDni());
 					break;
 				case CLIENT:
-					reservarHabitacioController.prOkPaga("", null);
+					reservarHabitacioController.prOkPaga(
+							vistaDadesClient.getNumTarg(),
+							vistaDadesClient.getDataCaducitat());
 					break;
 				}
 			}
@@ -144,7 +150,7 @@ public class VistaInicial extends JFrame {
 
 		Box verticalBox_2 = Box.createVerticalBox();
 		contentPane.add(verticalBox_2, BorderLayout.CENTER);
-		
+
 		Component verticalStrut_2 = Box.createVerticalStrut(20);
 		verticalBox_2.add(verticalStrut_2);
 
@@ -156,14 +162,15 @@ public class VistaInicial extends JFrame {
 
 		JLabel lblPoblacio = new JLabel("Poblacio:");
 		horizontalBox.add(lblPoblacio);
-		
+
 		Component horizontalStrut_2 = Box.createHorizontalStrut(20);
 		horizontalBox.add(horizontalStrut_2);
 
 		textFieldPoblacio = new JTextField();
 		textFieldPoblacio.setColumns(10);
 		horizontalBox.add(textFieldPoblacio);
-		
+		textFieldPoblacio.addKeyListener(new TextFieldChangeListener());
+
 		Component horizontalStrut_4 = Box.createHorizontalStrut(20);
 		horizontalBox.add(horizontalStrut_4);
 
@@ -175,20 +182,24 @@ public class VistaInicial extends JFrame {
 
 		JLabel lblDataInici = new JLabel("Data inici:");
 		horizontalBox_1.add(lblDataInici);
-		
+
 		Component horizontalStrut_1 = Box.createHorizontalStrut(20);
 		horizontalBox_1.add(horizontalStrut_1);
 
 		textFieldDataIniciDia = new JTextField();
 		horizontalBox_1.add(textFieldDataIniciDia);
 		textFieldDataIniciDia.setColumns(10);
-		
+		textFieldDataIniciDia.addKeyListener(new TextFieldChangeListener());
+		textFieldDataIniciDia.addKeyListener(new TextFieldDigitListener());
+
 		JLabel label_2 = new JLabel("/");
 		horizontalBox_1.add(label_2);
 
 		textFieldDataIniciMes = new JTextField();
 		horizontalBox_1.add(textFieldDataIniciMes);
 		textFieldDataIniciMes.setColumns(10);
+		textFieldDataIniciMes.addKeyListener(new TextFieldChangeListener());
+		textFieldDataIniciMes.addKeyListener(new TextFieldDigitListener());
 
 		JLabel label_3 = new JLabel("/");
 		horizontalBox_1.add(label_3);
@@ -196,7 +207,9 @@ public class VistaInicial extends JFrame {
 		textFieldDataIniciAny = new JTextField();
 		horizontalBox_1.add(textFieldDataIniciAny);
 		textFieldDataIniciAny.setColumns(10);
-		
+		textFieldDataIniciAny.addKeyListener(new TextFieldChangeListener());
+		textFieldDataIniciAny.addKeyListener(new TextFieldDigitListener());
+
 		Component horizontalStrut_5 = Box.createHorizontalStrut(20);
 		horizontalBox_1.add(horizontalStrut_5);
 
@@ -214,15 +227,15 @@ public class VistaInicial extends JFrame {
 
 		JLabel lblDataFi = new JLabel("Data fi:");
 		horizontalBox_2.add(lblDataFi);
-		
+
 		Component horizontalStrut = Box.createHorizontalStrut(20);
 		horizontalBox_2.add(horizontalStrut);
 
 		textFieldDataFiDia = new JTextField();
-		textFieldDataFiDia.setHorizontalAlignment(SwingConstants.TRAILING);
-		textFieldDataFiDia.setAlignmentX(Component.LEFT_ALIGNMENT);
 		horizontalBox_2.add(textFieldDataFiDia);
 		textFieldDataFiDia.setColumns(10);
+		textFieldDataFiDia.addKeyListener(new TextFieldChangeListener());
+		textFieldDataFiDia.addKeyListener(new TextFieldDigitListener());
 
 		JLabel label = new JLabel("/");
 		horizontalBox_2.add(label);
@@ -230,6 +243,8 @@ public class VistaInicial extends JFrame {
 		textFieldDataFiMes = new JTextField();
 		horizontalBox_2.add(textFieldDataFiMes);
 		textFieldDataFiMes.setColumns(10);
+		textFieldDataFiMes.addKeyListener(new TextFieldChangeListener());
+		textFieldDataFiMes.addKeyListener(new TextFieldDigitListener());
 
 		JLabel label_1 = new JLabel("/");
 		horizontalBox_2.add(label_1);
@@ -237,7 +252,9 @@ public class VistaInicial extends JFrame {
 		textFieldDataFiAny = new JTextField();
 		horizontalBox_2.add(textFieldDataFiAny);
 		textFieldDataFiAny.setColumns(10);
-		
+		textFieldDataFiAny.addKeyListener(new TextFieldChangeListener());
+		textFieldDataFiAny.addKeyListener(new TextFieldDigitListener());
+
 		Component horizontalStrut_6 = Box.createHorizontalStrut(20);
 		horizontalBox_2.add(horizontalStrut_6);
 
@@ -249,14 +266,16 @@ public class VistaInicial extends JFrame {
 
 		JLabel lblNumOcupants = new JLabel("Número d'ocupants");
 		horizontalBox_3.add(lblNumOcupants);
-		
+
 		Component horizontalStrut_3 = Box.createHorizontalStrut(20);
 		horizontalBox_3.add(horizontalStrut_3);
 
 		textFieldNumOcupants = new JTextField();
 		horizontalBox_3.add(textFieldNumOcupants);
 		textFieldNumOcupants.setColumns(10);
-		
+		textFieldNumOcupants.addKeyListener(new TextFieldChangeListener());
+		textFieldNumOcupants.addKeyListener(new TextFieldDigitListener());
+
 		Component horizontalStrut_7 = Box.createHorizontalStrut(20);
 		horizontalBox_3.add(horizontalStrut_7);
 
@@ -272,14 +291,15 @@ public class VistaInicial extends JFrame {
 
 		panelCard.add(firstPanel, "first");
 
-		vistaPreu = new VistaPreu();
+		vistaPreu = new VistaPreu(this);
 		panelCard.add(vistaPreu, "preu");
 
-		vistaDadesClient = new VistaDadesClient();
+		vistaDadesClient = new VistaDadesClient(this);
 		panelCard.add(vistaDadesClient, "client");
 
 		card.show(panelCard, "first");
 		state = FIRST;
+		habilitarOk(false);
 	}
 
 	public void mostraMissatge(String missatge) {
@@ -291,6 +311,7 @@ public class VistaInicial extends JFrame {
 	public void mostraHotelsTipusHab(
 			ArrayList<HotelAmbHabitacions> informacioHotels) {
 
+		mostraMissatge("");
 		vistaHotelsTipusHab = new VistaHotelsTipusHab(informacioHotels);
 		panelCard.add(vistaHotelsTipusHab, "hotels");
 
@@ -379,6 +400,10 @@ public class VistaInicial extends JFrame {
 
 	public void mostraPreu(float preu) {
 
+		mostraMissatge("");
+
+		habilitarOk(false);
+
 		Component verticalStrut_1 = Box.createVerticalStrut(20);
 		verticalBoxLbl.add(verticalStrut_1);
 
@@ -440,6 +465,9 @@ public class VistaInicial extends JFrame {
 
 	public void mostraDadesClient(String nom, String cognoms, String mail) {
 
+		mostraMissatge("");
+
+		habilitarOk(false);
 		Component verticalStrut_1 = Box.createVerticalStrut(20);
 		verticalBoxLbl.add(verticalStrut_1);
 
@@ -503,5 +531,35 @@ public class VistaInicial extends JFrame {
 			System.exit(0);
 		else
 			this.setVisible(false);// TODO
+	}
+
+	public void habilitarOk(boolean habilitat) {
+		btnOk.setEnabled(habilitat);
+	}
+
+	class TextFieldChangeListener implements KeyListener {
+		@Override
+		public void keyTyped(KeyEvent arg0) {
+		}
+
+		@Override
+		public void keyReleased(KeyEvent arg0) {
+			JTextField textField = (JTextField) arg0.getSource();
+			if (textFieldPoblacio.getText().length() > 0
+					&& textFieldNumOcupants.getText().length() > 0
+					&& textFieldDataFiAny.getText().length() > 0
+					&& textFieldDataFiMes.getText().length() > 0
+					&& textFieldDataFiDia.getText().length() > 0
+					&& textFieldDataIniciMes.getText().length() > 0
+					&& textFieldDataIniciDia.getText().length() > 0
+					&& textFieldDataIniciAny.getText().length() > 0) {
+				habilitarOk(true);
+			} else
+				habilitarOk(false);
+		}
+
+		@Override
+		public void keyPressed(KeyEvent arg0) {
+		}
 	}
 }

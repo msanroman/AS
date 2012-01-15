@@ -56,9 +56,6 @@ public class VistaHotelsTipusHab extends JPanel {
 		JComboBox<String> comboBox = new JComboBox<String>();
 		horizontalBox.add(comboBox);
 		
-		//comboBox.setMaximumSize(new Dimension(300, 30));
-		//comboBox.setPreferredSize(new Dimension(300, 30));
-		
 		for (HotelAmbHabitacions hotel : informacioHotels) {
 			comboBox.addItem(hotel.infoHotel.nom);
 		}
@@ -67,6 +64,7 @@ public class VistaHotelsTipusHab extends JPanel {
 			
 			@Override
 			public void itemStateChanged(ItemEvent arg0) {
+				@SuppressWarnings("unchecked")
 				JComboBox<String> aux = (JComboBox<String>) arg0.getSource();
 				hotelSeleccionat = informacioHotels.get(aux.getSelectedIndex());
 				actualitzaInformacio(hotelSeleccionat.habitacions);
@@ -105,7 +103,6 @@ public class VistaHotelsTipusHab extends JPanel {
 		horizontalBox_4.add(lblDescripcioHotel);
 		lblDescripcioHotel.setLineWrap(true);
 		lblDescripcioHotel.setBackground(this.getBackground());
-		//lblDescripcioHotel.setMaximumSize(new Dimension(200, 100));
 		
 		Component horizontalGlue_4 = Box.createHorizontalGlue();
 		horizontalBox_4.add(horizontalGlue_4);
@@ -163,11 +160,13 @@ public class VistaHotelsTipusHab extends JPanel {
 		verticalBox_1.removeAll();
 		
 		buttonGroup = new ButtonGroup();
-		for (HabitacionsTuple habitacio : habitacions) {
+		for (int i = 0; i < habitacions.size(); i++) {
 			Box horizontal = Box.createHorizontalBox();
-			JRadioButton radioButton = new JRadioButton(habitacio.tipusHabitacio); 
+			JRadioButton radioButton = new JRadioButton(habitacions.get(i).tipusHabitacio); 
 			buttonGroup.add(radioButton);
 			horizontal.add(radioButton);
+			if (i == 0) radioButton.setSelected(true);
+			else radioButton.setSelected(false);
 			
 			radioButton.addItemListener(new ItemListener() {
 				
@@ -181,10 +180,12 @@ public class VistaHotelsTipusHab extends JPanel {
 			});
 			
 			horizontal.add(Box.createHorizontalGlue());
-			horizontal.add(new Label(String.valueOf(habitacio.numeroDisponibles+" disponibles")));
+			horizontal.add(new Label(String.valueOf(habitacions.get(i).numeroDisponibles+" disponibles")));
 			horizontal.add(Box.createHorizontalGlue());
-			horizontal.add(new Label(String.valueOf(habitacio.preu)+" €"));
+			horizontal.add(new Label(String.valueOf(habitacions.get(i).preu)+" €"));
 			verticalBox_1.add(horizontal);
-		}	
+			
+			habitacioSeleccionada = habitacions.get(0).tipusHabitacio;
+		}
 	}
 }
