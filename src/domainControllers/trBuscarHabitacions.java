@@ -5,8 +5,6 @@ import Factories.CtrlDataFactoria;
 import domainModel.Poblacio;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import tupleTypes.HotelAmbHabitacions;
 
 public class trBuscarHabitacions extends Transaccio {
@@ -26,16 +24,18 @@ public class trBuscarHabitacions extends Transaccio {
     }
     
     @Override
-    public void executa() {
+    public void executa() throws Exception {
         
         CtrlDataFactoria ctrlDataFactoria = CtrlDataFactoria.getInstance();
         ICtrlPoblacio cp = ctrlDataFactoria.getCtrlPoblacio();
-        Poblacio p = cp.getPoblacio(pob);
-        try {
+        Poblacio p = cp.getPoblacio(this.pob);
+        if (p != null) {
             this.hotelsAmbHabitacions =  p.buscarHabitacio(dIni, dFi, numOcup);
-        } catch (Exception ex) {
-            Logger.getLogger(trBuscarHabitacions.class.getName()).log(Level.SEVERE, null, ex);
         }
+        else {
+            throw new Exception("No existeix aquesta poblacio");
+        }
+        
     }
     
     public ArrayList<HotelAmbHabitacions> obtenirResultat() {

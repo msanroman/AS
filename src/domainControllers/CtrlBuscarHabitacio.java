@@ -17,7 +17,7 @@ public class CtrlBuscarHabitacio {
         return poblacions;
     }
     
-    public ArrayList<HotelAmbHabitacions> buscarHabitacions(String pob, Date dIni, Date dFi, int numOcup) {
+    public ArrayList<HotelAmbHabitacions> buscarHabitacions(String pob, Date dIni, Date dFi, int numOcup) throws Exception{
         
         trBuscarHabitacions trBuscarHabitacions = new trBuscarHabitacions(pob, dIni, dFi, numOcup);
         trBuscarHabitacions.executa();

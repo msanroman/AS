@@ -4,14 +4,8 @@
  */
 package Factories;
 
-import DataControllers.CtrlClient;
-import DataControllers.CtrlHabitacio;
-import DataControllers.CtrlHotel;
-import DataControllers.CtrlPoblacio;
-import DataInterface.ICtrlClient;
-import DataInterface.ICtrlHabitacio;
-import DataInterface.ICtrlHotel;
-import DataInterface.ICtrlPoblacio;
+import DataControllers.*;
+import DataInterface.*;
 
 /**
  *
@@ -24,6 +18,7 @@ public class CtrlDataFactoria {
     private ICtrlHabitacio ctrlHabitacio;
     private ICtrlPoblacio ctrlPoblacio;
     private ICtrlHotel ctrlHotel;
+    private ICtrlTipusHabitacio ctrlTipusHabitacio;
     
     private CtrlDataFactoria() {
     }
@@ -56,5 +51,11 @@ public class CtrlDataFactoria {
         
         if(this.ctrlHotel == null) this.ctrlHotel = new CtrlHotel();
         return this.ctrlHotel;
+    }
+    
+    public ICtrlTipusHabitacio getCtrlTipusHabitacio() {
+        
+        if(this.ctrlTipusHabitacio == null) this.ctrlTipusHabitacio = new CtrlTipusHabitacio();
+        return this.ctrlTipusHabitacio;
     }
 }

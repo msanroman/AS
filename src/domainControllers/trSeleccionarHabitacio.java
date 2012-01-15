@@ -14,7 +14,7 @@ public class trSeleccionarHabitacio extends Transaccio {
     private Date dFi;
     private String hotel;
 
-    trSeleccionarHabitacio(String hotel, String tipusHab, Date dIni, Date dFi) {
+    public trSeleccionarHabitacio(String hotel, String tipusHab, Date dIni, Date dFi) {
         
         this.hotel = hotel;
         this.tipusHab = tipusHab;

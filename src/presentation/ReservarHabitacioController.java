@@ -6,7 +6,7 @@ import java.util.Date;
 import tupleTypes.DadesClient;
 import tupleTypes.DadesSeleccionarHabitacio;
 import tupleTypes.HotelAmbHabitacions;
-import presentation.CtrlReservar;
+import domainControllers.CtrlReservar;
 
 public class ReservarHabitacioController {
 

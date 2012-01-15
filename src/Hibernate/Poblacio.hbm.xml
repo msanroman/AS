@@ -8,5 +8,9 @@
             <column name="NOM" length="100" />
             <generator class="assigned" />
         </id>
+        <set name="hotels" table="HOTEL" >
+            <key column="NOMPOBLACIO" />
+            <one-to-many class="domainModel.Hotel"/>
+        </set>
     </class>
 </hibernate-mapping>

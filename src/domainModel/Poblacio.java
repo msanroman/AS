@@ -2,36 +2,16 @@ package domainModel;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Set;
 import tupleTypes.HabitacionsTuple;
 import tupleTypes.HotelAmbHabitacions;
 import tupleTypes.InfoHotel;
 
 public class Poblacio implements java.io.Serializable {
 	
-	private static class hotelsTuple {
-
-		private final String nom;
-		private final String descripcio;
-		private final String categoria;
-		private final float avaluacio;
-		private final ArrayList<HabitacionsTuple> habitacions;
-
-		public hotelsTuple(String nom, String descripcio, String categoria,
-				float avaluacio, ArrayList<HabitacionsTuple> habitacions) {
-			
-					this.nom = nom;
-					this.descripcio = descripcio;
-					this.categoria = categoria;
-					this.avaluacio = avaluacio;
-					this.habitacions = habitacions;
-		}
-		
-	}
-	
-	private ArrayList<Hotel> hotels;
-	
         private String nom;
-
+	private Set<Hotel> hotels;
+	
         public Poblacio() {
         }
 
@@ -47,20 +27,30 @@ public class Poblacio implements java.io.Serializable {
             this.nom = nom;
         }
         
+        public Set<Hotel> getHotels() {
+            return hotels;
+        }
+
+        public void setHotels(Set<Hotel> hotels) {
+            this.hotels = hotels;
+        }
+        
         public ArrayList<HotelAmbHabitacions> buscarHabitacio(Date dIni, Date dFi, int numOcup) throws Exception{
 		
-		ArrayList<HotelAmbHabitacions> hotels = new ArrayList<HotelAmbHabitacions>();
-		for(Hotel h: this.hotels) {
+		ArrayList<HotelAmbHabitacions> result = new ArrayList<HotelAmbHabitacions>();
+		if (this.hotels != null) {
+                    for(Hotel h: this.hotels) {
 			ArrayList<HabitacionsTuple> habitacions = h.getHabitacions(dIni, dFi, numOcup);
 			if(habitacions.size() > 0) {
 				InfoHotel hInfo = h.getInfoHotel();
 				HotelAmbHabitacions hotel = new HotelAmbHabitacions(hInfo.nom, hInfo.descripcio, hInfo.categoria, hInfo.avaluacio, habitacions);
-				hotels.add(hotel);
+				result.add(hotel);
 			}
-		}
-		
-		if (hotels.isEmpty()) throw new Exception("hotelsNoDisp");
-		return hotels;
+                    }
+                }
+//		if (this.hotels.size() <= 0) throw new Exception("noTeHotels");
+		if (result==null || result.isEmpty()) throw new Exception("hotelsNoDisp");
+		return result;
 	}
 
 }
