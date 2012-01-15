@@ -38,6 +38,7 @@ public class CtrlReservar {
     }
     
     void pagament(int numTarj, Date dCad) {
-        // TODO
+        trPagament trPagament = new trPagament(numTarj, dCad);
+        trPagament.executa();
     }
 }
