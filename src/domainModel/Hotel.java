@@ -2,6 +2,8 @@ package domainModel;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 import tupleTypes.HabitacioNumPreu;
 
 import tupleTypes.HabitacionsTuple;
@@ -59,8 +61,25 @@ public class Hotel implements java.io.Serializable {
             this.nompoblacio = nompoblacio;
         }
     
-	private ArrayList<PreuTipusHabitacio> preuTipusHabitacio;
-	private ArrayList<Habitacio> habitacions = new ArrayList<Habitacio>();
+	private Set<PreuTipusHabitacio> preuTipusHabitacio;
+
+        public Set<PreuTipusHabitacio> getPreuTipusHabitacio() {
+            return preuTipusHabitacio;
+        }
+
+        public void setPreuTipusHabitacio(Set<PreuTipusHabitacio> preuTipusHabitacio) {
+            this.preuTipusHabitacio = preuTipusHabitacio;
+        }
+	private Set<Habitacio> habitacions = new HashSet<Habitacio>();
+
+        public Set<Habitacio> getHabitacions() {
+            return habitacions;
+        }
+
+        public void setHabitacions(Set<Habitacio> habitacions) {
+            this.habitacions = habitacions;
+        }
+        
 	private ArrayList<Comentari> comentaris;
 	private Categoria categoria;
 	private static long TIME_IN_MILLIS = 3600000;

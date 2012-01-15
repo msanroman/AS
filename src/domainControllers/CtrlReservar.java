@@ -22,7 +22,7 @@ public class CtrlReservar {
         return poblacions;
     }
     
-    public ArrayList<HotelAmbHabitacions> buscarHabitacions(String pob, Date dIni, Date dFi, int numOcup) {
+    public ArrayList<HotelAmbHabitacions> buscarHabitacions(String pob, Date dIni, Date dFi, int numOcup) throws Exception {
 
         trBuscarHabitacions trBuscarHabitacions = new trBuscarHabitacions(pob, dIni, dFi, numOcup); 
         trBuscarHabitacions.executa();
@@ -57,7 +57,7 @@ public class CtrlReservar {
         return dadesReserva;
     }
     
-    void pagament(String numTarj, Date dCad) {
+    public void pagament(String numTarj, Date dCad) {
         
         trPagament trPagament = new trPagament(numTarj, dCad, this.preuTotal, this.dni, this.numHab, this.hotel, this.dIni, this.dFi);
         trPagament.executa();

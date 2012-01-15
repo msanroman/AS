@@ -17,5 +17,14 @@
         <property name="nompoblacio" type="string">
             <column name="NOMPOBLACIO" length="100" />
         </property>
+        <set name="preuTipusHabitacio" table="PREU_TIPUS_HABITACIO" >
+            <key column="NOM_HOTEL" />
+            <one-to-many class="domainModel.PreuTipusHabitacio"/>
+        </set>
+        <set name="habitacions" table="HABITACIO">
+            <key column="NOM_HOTEL" />
+            <one-to-many class="domainModel.Habitacio"/>
+        </set>
     </class>
 </hibernate-mapping>
+
