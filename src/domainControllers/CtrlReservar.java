@@ -18,7 +18,7 @@ public class CtrlReservar {
     private float preuTotal;
     private int numHab;
     
-    public ArrayList<String> obtenirPoblacions() {
+    public ArrayList<String> obtenirPoblacions() throws Exception{
         
         trObtenirPoblacions obtenirPoblacions = new trObtenirPoblacions();
         obtenirPoblacions.executa();
@@ -27,7 +27,7 @@ public class CtrlReservar {
     }
     
     public Set<HotelAmbHabitacions> buscarHabitacions(String pob, Date dIni, Date dFi, int numOcup) {
-        // TODO 
+
         Set<HotelAmbHabitacions> hotelsAmbHabitacions = null;
         return hotelsAmbHabitacions;
     }

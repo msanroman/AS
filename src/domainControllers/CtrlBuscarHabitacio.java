@@ -10,7 +10,7 @@ public class CtrlBuscarHabitacio {
     private Date dIni;
     private Date dFi;
     
-    public ArrayList<String> obtenirPoblacions() {
+    public ArrayList<String> obtenirPoblacions() throws Exception{
 
         trObtenirPoblacions obtenirPoblacions = new trObtenirPoblacions();
         obtenirPoblacions.executa();

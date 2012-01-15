@@ -7,6 +7,9 @@ import tupleTypes.DadesClient;
 import tupleTypes.DadesReserva;
 import tupleTypes.HotelAmbHabitacions;
 import domainControllers.CtrlReservar;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ReservarHabitacioController {
 
@@ -49,13 +52,21 @@ public class ReservarHabitacioController {
 			reservarHabitacioView.mostraMissatge("Nombre d'ocupants invàlid");
 		} else {
 			
-			Set<String> poblacions = ctrlReservar.obtenirPoblacions();
+			ArrayList<String> poblacions = null;
+                        try {
+                            poblacions = ctrlReservar.obtenirPoblacions();
+                        } catch (Exception ex) {
+                            if(ex.getMessage().equals("noHiHaPoblacions"))
+				reservarHabitacioView
+						.mostraMissatge("La poblaci� no es troba al sistema");
+                            else ex.printStackTrace();
+                        }
 			
 			if (!poblacions.contains(poblacio)) {
 				reservarHabitacioView
 						.mostraMissatge("La poblaci� no es troba al sistema");
 			} else {
-				Set<HotelAmbHabitacions> resultat = null;
+				ArrayList<HotelAmbHabitacions> resultat = null;
 				try {
 					resultat = ctrlReservar.buscarHabitacions(poblacio,
 							dataInici, dataFi, numOcupants);
