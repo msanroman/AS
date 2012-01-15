@@ -11,7 +11,7 @@ import tupleTypes.HotelAmbHabitacions;
 
 public class trBuscarHabitacions extends Transaccio {
 
-    private HotelAmbHabitacions hotelAmbHabitacions;
+    private ArrayList<HotelAmbHabitacions> hotelsAmbHabitacions;
     private String pob;
     private Date dIni;
     private Date dFi;
@@ -32,15 +32,14 @@ public class trBuscarHabitacions extends Transaccio {
         ICtrlPoblacio cp = ctrlDataFactoria.getCtrlPoblacio();
         Poblacio p = cp.getPoblacio(pob);
         try {
-            ArrayList<HotelAmbHabitacions> habitacions =  p.buscarHabitacio(dIni, dFi, numOcup);
+            this.hotelsAmbHabitacions =  p.buscarHabitacio(dIni, dFi, numOcup);
         } catch (Exception ex) {
             Logger.getLogger(trBuscarHabitacions.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
-    public HotelAmbHabitacions obtenirResultat() {
-        // TODO
-        hotelAmbHabitacions = null;
-        return hotelAmbHabitacions;
+    public ArrayList<HotelAmbHabitacions> obtenirResultat() {
+        
+        return hotelsAmbHabitacions;
     }
 }
