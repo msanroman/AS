@@ -38,10 +38,13 @@ public class VistaDadesClient extends JPanel {
 		textField = new JTextField();
 		horizontalBox.add(textField);
 		textField.setColumns(10);
-		textField.setMaximumSize(new Dimension(200, 25));
+		textField.setMaximumSize(new Dimension(200, 20));
 		
 		Component horizontalGlue_2 = Box.createHorizontalGlue();
 		horizontalBox.add(horizontalGlue_2);
+		
+		Component verticalStrut = Box.createVerticalStrut(10);
+		add(verticalStrut);
 		
 		Box horizontalBox_1 = Box.createHorizontalBox();
 		add(horizontalBox_1);
@@ -58,7 +61,7 @@ public class VistaDadesClient extends JPanel {
 		textField_1 = new JTextField();
 		horizontalBox_1.add(textField_1);
 		textField_1.setColumns(10);
-		textField_1.setMaximumSize(new Dimension(200, 25));
+		textField_1.setMaximumSize(new Dimension(200, 20));
 		
 		Component horizontalGlue_5 = Box.createHorizontalGlue();
 		horizontalBox_1.add(horizontalGlue_5);

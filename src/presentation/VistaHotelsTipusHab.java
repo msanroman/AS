@@ -73,8 +73,8 @@ public class VistaHotelsTipusHab extends JPanel {
 			}
 		});
 		
-		Component verticalGlue = Box.createVerticalGlue();
-		add(verticalGlue);
+		Component verticalStrut_2 = Box.createVerticalStrut(10);
+		add(verticalStrut_2);
 		
 		Box verticalBox = Box.createVerticalBox();
 		verticalBox.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
@@ -95,6 +95,9 @@ public class VistaHotelsTipusHab extends JPanel {
 		Component horizontalGlue_1 = Box.createHorizontalGlue();
 		horizontalBox_1.add(horizontalGlue_1);
 		
+		Component verticalStrut = Box.createVerticalStrut(5);
+		verticalBox.add(verticalStrut);
+		
 		Box horizontalBox_4 = Box.createHorizontalBox();
 		verticalBox.add(horizontalBox_4);
 		
@@ -106,6 +109,9 @@ public class VistaHotelsTipusHab extends JPanel {
 		
 		Component horizontalGlue_4 = Box.createHorizontalGlue();
 		horizontalBox_4.add(horizontalGlue_4);
+		
+		Component verticalStrut_1 = Box.createVerticalStrut(5);
+		verticalBox.add(verticalStrut_1);
 		
 		Box horizontalBox_2 = Box.createHorizontalBox();
 		verticalBox.add(horizontalBox_2);
@@ -135,9 +141,8 @@ public class VistaHotelsTipusHab extends JPanel {
 		Component verticalGlue_1 = Box.createVerticalGlue();
 		verticalBox.add(verticalGlue_1);
 		
-		ArrayList<HabitacionsTuple> habitacions = new ArrayList<HabitacionsTuple>();
-		habitacions.add(new HabitacionsTuple("tipus", 10, 100));
 		actualitzaInformacio(hotelSeleccionat.habitacions);
+		
 		this.setVisible(true);
 	}
 	
@@ -152,9 +157,11 @@ public class VistaHotelsTipusHab extends JPanel {
 	private void actualitzaInformacio(ArrayList<HabitacionsTuple> habitacions) {
 		lblNomHotel.setText(hotelSeleccionat.infoHotel.nom);
 		lblDescripcioHotel.setText(hotelSeleccionat.infoHotel.descripcio);
-		lblEstrelles.setText(hotelSeleccionat.infoHotel.categoria);
+		lblEstrelles.setText(hotelSeleccionat.infoHotel.categoria + " estrelles");
 		lblNota.setText(String.valueOf(hotelSeleccionat.infoHotel.avaluacio));
+		
 		verticalBox_1.removeAll();
+		
 		buttonGroup = new ButtonGroup();
 		for (HabitacionsTuple habitacio : habitacions) {
 			Box horizontal = Box.createHorizontalBox();
@@ -173,8 +180,10 @@ public class VistaHotelsTipusHab extends JPanel {
 				}
 			});
 			
-			horizontal.add(new Label(String.valueOf(habitacio.numeroDisponibles)));
-			horizontal.add(new Label(String.valueOf(habitacio.preu)));
+			horizontal.add(Box.createHorizontalGlue());
+			horizontal.add(new Label(String.valueOf(habitacio.numeroDisponibles+" disponibles")));
+			horizontal.add(Box.createHorizontalGlue());
+			horizontal.add(new Label(String.valueOf(habitacio.preu)+" €"));
 			verticalBox_1.add(horizontal);
 		}	
 	}

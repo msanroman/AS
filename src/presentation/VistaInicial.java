@@ -3,6 +3,7 @@ package presentation;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Date;
@@ -17,6 +18,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import tupleTypes.HotelAmbHabitacions;
+import javax.swing.SwingConstants;
 
 public class VistaInicial extends JFrame {
 
@@ -155,8 +157,8 @@ public class VistaInicial extends JFrame {
 		JLabel lblPoblacio = new JLabel("Poblacio:");
 		horizontalBox.add(lblPoblacio);
 		
-		Component horizontalStrut = Box.createHorizontalStrut(20);
-		horizontalBox.add(horizontalStrut);
+		Component horizontalStrut_2 = Box.createHorizontalStrut(20);
+		horizontalBox.add(horizontalStrut_2);
 
 		textFieldPoblacio = new JTextField();
 		textFieldPoblacio.setColumns(10);
@@ -180,7 +182,7 @@ public class VistaInicial extends JFrame {
 		textFieldDataIniciDia = new JTextField();
 		horizontalBox_1.add(textFieldDataIniciDia);
 		textFieldDataIniciDia.setColumns(10);
-
+		
 		JLabel label_2 = new JLabel("/");
 		horizontalBox_1.add(label_2);
 
@@ -213,10 +215,12 @@ public class VistaInicial extends JFrame {
 		JLabel lblDataFi = new JLabel("Data fi:");
 		horizontalBox_2.add(lblDataFi);
 		
-		Component horizontalStrut_2 = Box.createHorizontalStrut(20);
-		horizontalBox_2.add(horizontalStrut_2);
+		Component horizontalStrut = Box.createHorizontalStrut(20);
+		horizontalBox_2.add(horizontalStrut);
 
 		textFieldDataFiDia = new JTextField();
+		textFieldDataFiDia.setHorizontalAlignment(SwingConstants.TRAILING);
+		textFieldDataFiDia.setAlignmentX(Component.LEFT_ALIGNMENT);
 		horizontalBox_2.add(textFieldDataFiDia);
 		textFieldDataFiDia.setColumns(10);
 

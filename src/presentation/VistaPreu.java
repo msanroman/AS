@@ -25,9 +25,6 @@ public class VistaPreu extends JPanel {
 		Box horizontalBox = Box.createHorizontalBox();
 		add(horizontalBox);
 		
-		Component horizontalGlue1 = Box.createHorizontalGlue();
-		horizontalBox.add(horizontalGlue1);
-		
 		JLabel lblNewLabel = new JLabel("DNI:");
 		horizontalBox.add(lblNewLabel);
 		
@@ -37,7 +34,7 @@ public class VistaPreu extends JPanel {
 		textField = new JTextField();
 		horizontalBox.add(textField);
 		textField.setColumns(10);
-		textField.setMaximumSize(new Dimension(200, 25));
+		textField.setMaximumSize(new Dimension(200, 20));
 		
 		textField.addActionListener(new ActionListener() {
 			

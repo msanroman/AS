@@ -88,7 +88,7 @@ public class ReservarHabitacioController {
 	public void prOkObteDadesClient(String dni) {
 		DadesClient dadesClient = null;
 		try {
-			dadesClient = ctrlReservar.introduirDNI(dni);
+			dadesClient = ctrlReservar.introduirDNI(dni).dadesClient;
 		} catch (Exception e) { // TODO exception
 			if (e.getMessage().equals("clientNoExisteix")) {
 			reservarHabitacioView
