@@ -1,6 +1,5 @@
 package tupleTypes;
 
-import domainModel.Client;
 import java.util.Date;
 
 public class DadesReserva {
