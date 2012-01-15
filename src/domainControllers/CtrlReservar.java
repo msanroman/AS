@@ -32,6 +32,7 @@ public class CtrlReservar {
         return hotelsAmbHabitacions;
     }
     
+
     public DadesSeleccionarHabitacio seleccionarHabitacio(String hotel, String tipusHab) {
         
         trSeleccionarHabitacio seleccionarHabitacio = new trSeleccionarHabitacio(hotel, tipusHab, this.dIni, this.dFi);
