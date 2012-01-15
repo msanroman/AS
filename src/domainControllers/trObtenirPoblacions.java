@@ -1,19 +1,28 @@
 package domainControllers;
 
-import java.util.Set;
+import DataInterface.ICtrlPoblacio;
+import Factories.CtrlDataFactoria;
+import domainModel.Poblacio;
+import java.util.ArrayList;
 
 public class trObtenirPoblacions extends Transaccio {
 
-    private Set<String> poblacions;
+    private ArrayList<String> result;
     
     @Override
     public void executa() {
-        // TODO
+
+        ICtrlPoblacio cp = CtrlDataFactoria.getInstance().getCtrlPoblacio();
+        ArrayList<Poblacio> poblacions = cp.tots();
+        this.result = new ArrayList<String>();
+        for (Poblacio p: poblacions) {
+            this.result.add(p.getNom());
+        }
+        
     }
     
-    public Set<String> obtenirResultat() {
-        // TODO
-        poblacions = null;
-        return poblacions;
+    public ArrayList<String> obtenirResultat() {
+
+        return result;
     }
 }

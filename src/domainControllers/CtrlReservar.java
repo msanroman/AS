@@ -1,5 +1,6 @@
 package domainControllers;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Set;
 import tupleTypes.*;
@@ -14,9 +15,11 @@ public class CtrlReservar {
     private float preuTotal;
     private int numHab;
     
-    public Set<String> obtenirPoblacions() {
-        // TODO 
-        Set<String> poblacions = null;
+    public ArrayList<String> obtenirPoblacions() {
+        
+        trObtenirPoblacions obtenirPoblacions = new trObtenirPoblacions();
+        obtenirPoblacions.executa();
+        ArrayList<String> poblacions = obtenirPoblacions.obtenirResultat();
         return poblacions;
     }
     
@@ -26,6 +29,7 @@ public class CtrlReservar {
         return hotelsAmbHabitacions;
     }
     
+
     public DadesSeleccionarHabitacio seleccionarHabitacio(String hotel, String tipusHab) {
         
         trSeleccionarHabitacio seleccionarHabitacio = new trSeleccionarHabitacio(hotel, tipusHab, this.dIni, this.dFi);
