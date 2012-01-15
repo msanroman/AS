@@ -14,5 +14,6 @@
     <property name="nomtipus" type="string">
       <column length="50" name="NOMTIPUS"/>
     </property>
+<!--    <many-to-one name="tipusHabitacio" class="domainModel.TipusHabitacio" column="NOMTIPUS" update="false" insert="false"/>-->
   </class>
 </hibernate-mapping>

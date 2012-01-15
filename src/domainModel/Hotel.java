@@ -90,8 +90,11 @@ public class Hotel implements java.io.Serializable {
 		
 		for(Habitacio habitacio : this.habitacions) {
 			int capacitat = habitacio.getCapacitat();
+                        System.out.println("Habitacion " + habitacio.getNomtipus() + " con capacidad " + capacitat);
 			if (numOcup <= capacitat) {
-				if (habitacio.estaDisponible()) {
+                            System.out.println("Tiene hab con capacitat suficiente");
+				if (habitacio.estaDisponible(dIni, dFi)) {
+                                        System.out.println("Esta disponible");
 					String tipus = habitacio.getNomtipus();
 					boolean tipusExistent = false;
 					for(HabitacionsTuple h : habitacions) {
@@ -122,21 +125,19 @@ public class Hotel implements java.io.Serializable {
 	public InfoHotel getInfoHotel() {
 		
 		int sumAval = 0;
-		for(Comentari c: this.comentaris) {
-			int aval = c.getAvaluacio();
-			sumAval += aval;
-		}
-		
 		float avaluacio;
-		if (this.comentaris.isEmpty()) {
-			
+		if (this.comentaris == null || this.comentaris.isEmpty()) {
 			avaluacio = 0;
 		}
-		else {
-			avaluacio = sumAval/this.comentaris.size();
+                else {
+                    for(Comentari c: this.comentaris) {
+                            int aval = c.getAvaluacio();
+                            sumAval += aval;
+                    }
+                    avaluacio = sumAval/this.comentaris.size();
 		}
 		
-		String nomCategoria = this.categoria.getNom();
+		String nomCategoria = this.nomcategoria;
 		
 		InfoHotel result = new InfoHotel(this.nom, this.descripcio, nomCategoria, avaluacio);
 		return result;
