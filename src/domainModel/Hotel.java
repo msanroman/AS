@@ -5,84 +5,115 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import tupleTypes.HabitacioNumPreu;
-
 import tupleTypes.HabitacionsTuple;
 import tupleTypes.InfoHotel;
 
 
 public class Hotel implements java.io.Serializable {
 
+    private String nom;
+    private String descripcio;
+    private String nomcategoria;
+    private String nompoblacio;
+    private Set<PreuTipusHabitacio> preuTipusHabitacio = new HashSet();
+    private Set<Habitacio> habitacions = new HashSet();
+    private Set<Comentari> comentaris = new HashSet();
+    private static long TIME_IN_MILLIS = 3600000;
 
-     private String nom;
-     private String descripcio;
-     private String nomcategoria;
-     private String nompoblacio;
+    public Hotel() {
+    }
 
-        public Hotel() {
-        }
-
-
-        public Hotel(String nom) {
-            this.nom = nom;
-        }
-        public Hotel(String nom, String descripcio, String nomcategoria, String nompoblacio) {
-            this.nom = nom;
-            this.descripcio = descripcio;
-            this.nomcategoria = nomcategoria;
-            this.nompoblacio = nompoblacio;
-        }
-
-        public String getNom() {
-            return this.nom;
-        }
-
-        public void setNom(String nom) {
-            this.nom = nom;
-        }
-        public String getDescripcio() {
-            return this.descripcio;
-        }
-
-        public void setDescripcio(String descripcio) {
-            this.descripcio = descripcio;
-        }
-        public String getNomcategoria() {
-            return this.nomcategoria;
-        }
-
-        public void setNomcategoria(String nomcategoria) {
-            this.nomcategoria = nomcategoria;
-        }
-        public String getNompoblacio() {
-            return this.nompoblacio;
-        }
-
-        public void setNompoblacio(String nompoblacio) {
-            this.nompoblacio = nompoblacio;
-        }
+    public Hotel(String nom) {
+        this.nom = nom;
+    }
     
-	private Set<PreuTipusHabitacio> preuTipusHabitacio;
+    public Hotel(String nom, String descripcio, String nomcategoria, String nompoblacio) {
+        this.nom = nom;
+        this.descripcio = descripcio;
+        this.nomcategoria = nomcategoria;
+        this.nompoblacio = nompoblacio;
+    }
 
-        public Set<PreuTipusHabitacio> getPreuTipusHabitacio() {
-            return preuTipusHabitacio;
+    public String getNom() {
+        return this.nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+    public String getDescripcio() {
+        return this.descripcio;
+    }
+
+    public void setDescripcio(String descripcio) {
+        this.descripcio = descripcio;
+    }
+    public String getNomcategoria() {
+        return this.nomcategoria;
+    }
+
+    public void setNomcategoria(String nomcategoria) {
+        this.nomcategoria = nomcategoria;
+    }
+    public String getNompoblacio() {
+        return this.nompoblacio;
+    }
+
+    public void setNompoblacio(String nompoblacio) {
+        this.nompoblacio = nompoblacio;
+    }
+
+    public Set<PreuTipusHabitacio> getPreuTipusHabitacio() {
+        return this.preuTipusHabitacio;
+    }
+
+    public void setPreuTipusHabitacio(Set<PreuTipusHabitacio> preus){
+        this.preuTipusHabitacio = preus;    
+    }
+    
+    public Set<Habitacio> getHabitacions() {
+        return habitacions;
+    }
+
+    public void setHabitacions(Set<Habitacio> habitacions) {
+        this.habitacions = habitacions;
+    }
+	
+    public Set<Comentari> getComentaris() {
+        return comentaris;
+    }
+
+    public void setComentaris(Set<Comentari> comentaris) {
+        this.comentaris = comentaris;
+    }
+	
+    public HabitacioNumPreu seleccionarHabitacio(String tipusHabitacio, Date dIni, Date dFi) {
+
+        int num = 0;
+        for(Habitacio h: this.habitacions) {
+            String tipus = h.getNomtipus();
+            if (tipus.equals(tipusHabitacio)) {
+                if (h.estaDisponible(dIni, dFi)) {
+                    num = h.getId().getNumero();
+                    break;
+                }
+            }
         }
 
-        public void setPreuTipusHabitacio(Set<PreuTipusHabitacio> preuTipusHabitacio) {
-            this.preuTipusHabitacio = preuTipusHabitacio;
-        }
-	private Set<Habitacio> habitacions = new HashSet<Habitacio>();
+        double preu = 0;
+        for(PreuTipusHabitacio p: this.preuTipusHabitacio) {
 
-        public Set<Habitacio> getHabitacions() {
-            return habitacions;
-        }
-
-        public void setHabitacions(Set<Habitacio> habitacions) {
-            this.habitacions = habitacions;
+            if (tipusHabitacio.equals(p.getId().getNomtipus())) {
+                preu = p.getPreu();
+                preu = preu*(dFi.getTime() - dIni.getTime())/TIME_IN_MILLIS;
+            }
         }
         
-	private ArrayList<Comentari> comentaris;
-	private Categoria categoria;
-	private static long TIME_IN_MILLIS = 3600000;
+        return new HabitacioNumPreu(num, (float)preu);
+    }
+
+
+        
 	
 	public ArrayList<HabitacionsTuple> getHabitacions(Date dIni, Date dFi, int numOcup) {
 		
@@ -141,31 +172,6 @@ public class Hotel implements java.io.Serializable {
 		
 		InfoHotel result = new InfoHotel(this.nom, this.descripcio, nomCategoria, avaluacio);
 		return result;
-	}
-	
-	public HabitacioNumPreu seleccionarHabitacio(String tipusHabitacio, Date dIni, Date dFi) {
-		
-		int num = 0;
-		for(Habitacio h: this.habitacions) {
-			String tipus = h.getNomtipus();
-			if (tipus.equals(tipusHabitacio)) {
-				if (h.estaDisponible(dIni, dFi)) {
-					num = h.getNumero();
-					break;
-				}
-			}
-		}
-		
-		double preu = 0;
-		for(PreuTipusHabitacio p: this.preuTipusHabitacio) {
-			
-			if (tipusHabitacio.equals(p.getId().getNomtipus())) {
-				preu = p.getPreu();
-				preu = preu*(dFi.getTime() - dIni.getTime())/TIME_IN_MILLIS;
-			}
-		}
-		
-		return new HabitacioNumPreu(num, (float)preu);
 	}
 
 }

@@ -15,5 +15,12 @@
       <column length="50" name="NOMTIPUS"/>
     </property>
 <!--    <many-to-one name="tipusHabitacio" class="domainModel.TipusHabitacio" column="NOMTIPUS" update="false" insert="false"/>-->
+    <set name="reserves" table="RESERVA">
+            <key>
+                <column name="NOM_HOTEL"/>
+                <column name="NUMERO" />
+            </key> 
+            <one-to-many class="domainModel.Reserva"/>
+    </set>
   </class>
 </hibernate-mapping>

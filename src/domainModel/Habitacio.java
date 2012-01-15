@@ -4,6 +4,8 @@ import DataInterface.ICtrlTipusHabitacio;
 import Factories.CtrlDataFactoria;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Habitacio implements java.io.Serializable{
 
@@ -23,7 +25,17 @@ public class Habitacio implements java.io.Serializable{
         private String nomtipus;
 	private boolean disponible;
 	private int numero;
-	private ArrayList<Reserva> reserves;
+
+	private Set<Reserva> reserves = new HashSet();
+
+        public Set<Reserva> getReserves() {
+            return reserves;
+        }
+
+        public void setReserves(Set<Reserva> reserves) {
+            this.reserves = reserves;
+        }
+        
 	private HabitacioId id;
              
         public Habitacio() {
@@ -64,6 +76,7 @@ public class Habitacio implements java.io.Serializable{
         public void setId(HabitacioId id) {
             this.id = id;
         }
+
 
 	public boolean estaDisponible() {
 
