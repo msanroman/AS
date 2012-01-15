@@ -10,16 +10,21 @@ package ServiceLocator;
  */
 public class ServiceLocator {
     
-    private ServiceLocator instance;
+    private static ServiceLocator instance;
+    private ServeiPagament servei;
     
-    public ServiceLocator getInstance() {
+    private ServiceLocator() {}
+    
+    public static ServiceLocator getInstance() {
         
-        throw new UnsupportedOperationException("Operation not supported yet.");
+        if(instance == null) instance = new ServiceLocator();
+        return instance;
     }
     
-    public void find(String name) {
+    public ServeiPagament find(String name) {
         
-        throw new UnsupportedOperationException("Operation not supported yet.");
+        if (servei == null) servei = new ServeiPagament();
+        return servei;
     }
     
 }

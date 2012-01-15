@@ -48,8 +48,9 @@ public class CtrlReservar {
         return dadesReserva;
     }
     
-    void pagament(int numTarj, Date dCad) {
-        trPagament trPagament = new trPagament(numTarj, dCad);
+    void pagament(String numTarj, Date dCad) {
+        
+        trPagament trPagament = new trPagament(numTarj, dCad, this.preuTotal, this.dni, this.numHab, this.hotel, this.dIni, this.dFi);
         trPagament.executa();
     }
 }
