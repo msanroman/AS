@@ -17,14 +17,13 @@ public class Reserva  implements java.io.Serializable {
         public Reserva(ReservaId id) {
             this.id = id;
         }
-        public Reserva(ReservaId id, Date dataReserva, Date dataFi, Integer idReserva, Double preuTotal) {
+        public Reserva(ReservaId id, Date dataReserva, Date dataFi, Double preuTotal) {
             this.id = id;
             this.dataReserva = dataReserva;
             this.dataFi = dataFi;
-            this.idReserva = idReserva;
             this.preuTotal = preuTotal;
         }
-
+        
         public ReservaId getId() {
             return this.id;
         }

@@ -2,6 +2,7 @@ package domainModel;
 
 import java.util.ArrayList;
 import java.util.Date;
+import tupleTypes.HabitacioNumPreu;
 
 import tupleTypes.HabitacionsTuple;
 import tupleTypes.InfoHotel;
@@ -58,18 +59,6 @@ public class Hotel implements java.io.Serializable {
             this.nompoblacio = nompoblacio;
         }
     
-	private static class infoHabitacio {
-		
-		public int numHabitacio;
-		public double preuHabitacio;
-		
-		public infoHabitacio(int num, double preu) {
-			
-			this.numHabitacio = num;
-			this.preuHabitacio = preu;
-		}
-	}
-	
 	private ArrayList<PreuTipusHabitacio> preuTipusHabitacio;
 	private ArrayList<Habitacio> habitacions = new ArrayList<Habitacio>();
 	private ArrayList<Comentari> comentaris;
@@ -134,7 +123,7 @@ public class Hotel implements java.io.Serializable {
 		return result;
 	}
 	
-	public infoHabitacio seleccionarHabitacio(String tipusHabitacio, Date dIni, Date dFi) {
+	public HabitacioNumPreu seleccionarHabitacio(String tipusHabitacio, Date dIni, Date dFi) {
 		
 		int num = 0;
 		for(Habitacio h: this.habitacions) {
@@ -156,7 +145,7 @@ public class Hotel implements java.io.Serializable {
 			}
 		}
 		
-		return new infoHabitacio(num, preu);
+		return new HabitacioNumPreu(num, (float)preu);
 	}
 
 }

@@ -1,6 +1,5 @@
 package tupleTypes;
 
-import domainModel.Client;
 import java.util.Date;
 
 public class DadesReserva {
@@ -10,16 +9,16 @@ public class DadesReserva {
         public Date dFi;
         public String hotel;
         public String tipusHab;
-        public Client client;
+        public DadesClient dadesClient;
         public float preuTotal;
         
-	public DadesReserva(String pob,Date dIni,Date dFi,String hotel,String tipusHab, Client client, float preuTotal) {	
+	public DadesReserva(String pob,Date dIni,Date dFi,String hotel,String tipusHab, DadesClient dadesClient, float preuTotal) {	
 		this.pob = pob;
 		this.dIni = dIni;
                 this.dFi = dFi;
 		this.hotel = hotel;
                 this.tipusHab = tipusHab;
-		this.client = client;
+		this.dadesClient = dadesClient;
                 this.preuTotal = preuTotal;
 	}
 }

@@ -1,6 +1,9 @@
 package domainModel;
 // Generated 13-ene-2012 19:46:20 by Hibernate Tools 3.2.1.GA
 
+import java.util.ArrayList;
+
+
 
 
 /**
@@ -13,6 +16,7 @@ public class Client  implements java.io.Serializable {
      private String nom;
      private String cognoms;
      private String email;
+     private ArrayList<Reserva> reserves = new ArrayList<Reserva>();
 
     public Client() {
     }
@@ -57,6 +61,10 @@ public class Client  implements java.io.Serializable {
         this.email = email;
     }
 
+    public void afegeixReserva(Reserva r) {
+        
+        this.reserves.add(r);
+    }
 
 
 

@@ -4,6 +4,8 @@
  */
 package Adapters;
 
+import ServiceLocator.ServeiPagament;
+import ServiceLocator.ServiceLocator;
 import java.util.Date;
 
 /**
@@ -15,7 +17,8 @@ public class PagamentAdapter implements IPagamentAdapter {
     @Override
     public boolean autoritza(String numTarj, Date dCad, float preuTotal) {
         
-        throw new UnsupportedOperationException("Not supported yet.");
+        ServeiPagament sp = ServiceLocator.getInstance().find("Servei Pagament");
+        return sp.autoritza(numTarj, dCad, preuTotal);
     }
     
    

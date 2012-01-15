@@ -6,9 +6,11 @@ package Factories;
 
 import DataControllers.CtrlClient;
 import DataControllers.CtrlHabitacio;
+import DataControllers.CtrlHotel;
 import DataControllers.CtrlPoblacio;
 import DataInterface.ICtrlClient;
 import DataInterface.ICtrlHabitacio;
+import DataInterface.ICtrlHotel;
 import DataInterface.ICtrlPoblacio;
 
 /**
@@ -21,6 +23,7 @@ public class CtrlDataFactoria {
     private ICtrlClient ctrlClient;
     private ICtrlHabitacio ctrlHabitacio;
     private ICtrlPoblacio ctrlPoblacio;
+    private ICtrlHotel ctrlHotel;
     
     private CtrlDataFactoria() {
     }
@@ -47,5 +50,11 @@ public class CtrlDataFactoria {
         
         if(this.ctrlPoblacio == null) this.ctrlPoblacio = new CtrlPoblacio();
         return this.ctrlPoblacio;
+    }
+
+    public ICtrlHotel getCtrlHotel() {
+        
+        if(this.ctrlHotel == null) this.ctrlHotel = new CtrlHotel();
+        return this.ctrlHotel;
     }
 }
