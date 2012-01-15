@@ -27,7 +27,7 @@ public class CtrlReservar {
         return hotelsAmbHabitacions;
     }
     
-    public void seleccionarHabitacio() {
+    public void seleccionarHabitacio(String nomHotel, String tipusHab) {
         // TODO
     }
     
