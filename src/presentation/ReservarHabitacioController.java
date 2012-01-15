@@ -1,11 +1,12 @@
 package presentation;
 
-import domainControllers.CtrlReservar;
 import java.util.ArrayList;
 import java.util.Date;
+
 import tupleTypes.DadesClient;
-import tupleTypes.DadesReserva;
+import tupleTypes.DadesSeleccionarHabitacio;
 import tupleTypes.HotelAmbHabitacions;
+import domainControllers.CtrlReservar;
 
 public class ReservarHabitacioController {
 
@@ -48,14 +49,15 @@ public class ReservarHabitacioController {
 			reservarHabitacioView.mostraMissatge("Nombre d'ocupants invàlid");
 		} else {
 			ArrayList<String> poblacions = null;
-                        try {
-                            poblacions = ctrlReservar.obtenirPoblacions();
-                        } catch (Exception ex) {
-                            if(ex.getMessage().equals("noHiHaPoblacions"))
-				reservarHabitacioView
-						.mostraMissatge("La poblaci� no es troba al sistema");
-                            else ex.printStackTrace();
-                        }
+			try {
+				poblacions = ctrlReservar.obtenirPoblacions();
+			} catch (Exception ex) {
+				if (ex.getMessage().equals("noHiHaPoblacions"))
+					reservarHabitacioView
+							.mostraMissatge("La poblaci� no es troba al sistema");
+				else
+					ex.printStackTrace();
+			}
 			if (!poblacions.contains(poblacio)) {
 				reservarHabitacioView
 						.mostraMissatge("La poblacio no es troba al sistema");
@@ -67,7 +69,7 @@ public class ReservarHabitacioController {
 				} catch (Exception e) {// TODO exception
 					if (e.getMessage().equals("hotelsNoDisp")) {
 						reservarHabitacioView
-							.mostraMissatge("No hi han hotels disponibles");
+								.mostraMissatge("No hi han hotels disponibles");
 					} else {
 						e.printStackTrace();
 					}
@@ -91,8 +93,8 @@ public class ReservarHabitacioController {
 			dadesClient = ctrlReservar.introduirDNI(dni).dadesClient;
 		} catch (Exception e) { // TODO exception
 			if (e.getMessage().equals("clientNoExisteix")) {
-			reservarHabitacioView
-					.mostraMissatge("No existeix al sistema un client amb aquest DNI");
+				reservarHabitacioView
+						.mostraMissatge("No existeix al sistema un client amb aquest DNI");
 			} else {
 				e.printStackTrace();
 			}
@@ -102,9 +104,9 @@ public class ReservarHabitacioController {
 	}
 
 	public void prOkObtePreu(String nomHotel, String tipusHab) {
-		DadesReserva dadesReserva = ctrlReservar.seleccionarHabitacio(nomHotel,
-				tipusHab);
-		reservarHabitacioView.mostraPreu(dadesReserva.preuTotal);
+		DadesSeleccionarHabitacio dadesSeleccionarHabitacio = ctrlReservar
+				.seleccionarHabitacio(nomHotel, tipusHab);
+		reservarHabitacioView.mostraPreu(dadesSeleccionarHabitacio.preuTotal);
 	}
 
 	public void prOkPaga(String numTarg, Date dataCad) {
@@ -112,8 +114,8 @@ public class ReservarHabitacioController {
 			ctrlReservar.pagament(numTarg, dataCad);
 		} catch (Exception e) {// TODO exception
 			if (e.getMessage().equals("serveiNoDisponible")) {
-			reservarHabitacioView
-					.mostraMissatge("Ha hagut un error en el sistema de pagament");
+				reservarHabitacioView
+						.mostraMissatge("Ha hagut un error en el sistema de pagament");
 			} else {
 				e.printStackTrace();
 			}
