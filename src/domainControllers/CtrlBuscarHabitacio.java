@@ -2,7 +2,6 @@ package domainControllers;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Set;
 import tupleTypes.HotelAmbHabitacions;
 
 public class CtrlBuscarHabitacio {
@@ -18,9 +17,14 @@ public class CtrlBuscarHabitacio {
         return poblacions;
     }
     
-    public Set<HotelAmbHabitacions> buscarHabitacions(String pob, Date dIni, Date dFi, int numOcup) {
-        // TODO 
-        Set<HotelAmbHabitacions> hotelsAmbHabitacions = null;
-        return hotelsAmbHabitacions;
+    public ArrayList<HotelAmbHabitacions> buscarHabitacions(String pob, Date dIni, Date dFi, int numOcup) {
+        
+        trBuscarHabitacions trBuscarHabitacions = new trBuscarHabitacions(pob, dIni, dFi, numOcup);
+        trBuscarHabitacions.executa();
+        this.pob = pob;
+        this.dIni = dIni;
+        this.dFi = dFi;
+        ArrayList<HotelAmbHabitacions> habitacions = trBuscarHabitacions.obtenirResultat();
+        return habitacions;
     }
 }

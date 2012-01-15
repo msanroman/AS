@@ -10,11 +10,13 @@ public class trObtenirPoblacions extends Transaccio {
     private ArrayList<String> result;
     
     @Override
-    public void executa() {
+    public void executa() throws Exception {
 
         ICtrlPoblacio cp = CtrlDataFactoria.getInstance().getCtrlPoblacio();
         ArrayList<Poblacio> poblacions = cp.tots();
         this.result = new ArrayList<String>();
+        if (poblacions.isEmpty())
+            throw new Exception("noHiHaPoblacions");
         for (Poblacio p: poblacions) {
             this.result.add(p.getNom());
         }

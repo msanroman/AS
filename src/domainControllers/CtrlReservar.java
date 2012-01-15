@@ -2,11 +2,7 @@ package domainControllers;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Set;
-import tupleTypes.DadesReserva;
-import tupleTypes.DadesSeleccionarHabitacio;
-import tupleTypes.HabitacioNumPreu;
-import tupleTypes.HotelAmbHabitacions;
+import tupleTypes.*;
 
 public class CtrlReservar {
     private String pob;
@@ -26,10 +22,15 @@ public class CtrlReservar {
         return poblacions;
     }
     
-    public Set<HotelAmbHabitacions> buscarHabitacions(String pob, Date dIni, Date dFi, int numOcup) {
+    public ArrayList<HotelAmbHabitacions> buscarHabitacions(String pob, Date dIni, Date dFi, int numOcup) {
 
-        Set<HotelAmbHabitacions> hotelsAmbHabitacions = null;
-        return hotelsAmbHabitacions;
+        trBuscarHabitacions trBuscarHabitacions = new trBuscarHabitacions(pob, dIni, dFi, numOcup); 
+        trBuscarHabitacions.executa();
+        this.pob = pob;
+        this.dIni = dIni;
+        this.dFi = dFi;
+        ArrayList<HotelAmbHabitacions> habitacions = trBuscarHabitacions.obtenirResultat();
+        return habitacions;
     }
     
 
@@ -47,8 +48,12 @@ public class CtrlReservar {
     }
     
     public DadesReserva introduirDNI(String dni) {
-        // TODO
-        DadesReserva dadesReserva = null;
+        
+        trIntroduirDNI trIntroduirDNI = new trIntroduirDNI(dni);
+        trIntroduirDNI.executa();
+        DadesClient d = trIntroduirDNI.obtenirResultat();
+        
+        DadesReserva dadesReserva = new DadesReserva(pob, dIni, dFi, hotel, tipusHab, dni, d, preuTotal);
         return dadesReserva;
     }
     
