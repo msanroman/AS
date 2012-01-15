@@ -14,5 +14,12 @@
     <property name="nomtipus" type="string">
       <column length="50" name="NOMTIPUS"/>
     </property>
+    <set name="reserves" table="RESERVA">
+            <key>
+                <column name="NOM_HOTEL"/>
+                <column name="NUMERO" />
+            </key> 
+            <one-to-many class="domainModel.Reserva"/>
+    </set>
   </class>
 </hibernate-mapping>

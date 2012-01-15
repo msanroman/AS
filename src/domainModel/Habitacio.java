@@ -2,6 +2,8 @@ package domainModel;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Habitacio implements java.io.Serializable{
 
@@ -9,9 +11,17 @@ public class Habitacio implements java.io.Serializable{
 	private boolean disponible;
         private String nomtipus;
 	private int numero;
-	private ArrayList<Reserva> reserves;
-	private HabitacioId id;
+	private Set<Reserva> reserves = new HashSet();
 
+        public Set<Reserva> getReserves() {
+            return reserves;
+        }
+
+        public void setReserves(Set<Reserva> reserves) {
+            this.reserves = reserves;
+        }
+        
+	private HabitacioId id;
              
 	public Habitacio(int capacitat, int numero, String tipus) {
 		
@@ -41,6 +51,7 @@ public class Habitacio implements java.io.Serializable{
         public void setId(HabitacioId id) {
             this.id = id;
         }
+        
         public String getNomtipus() {
             return this.nomtipus;
         }

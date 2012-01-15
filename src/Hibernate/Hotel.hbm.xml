@@ -12,8 +12,9 @@
             <column name="DESCRIPCIO" length="500" />
         </property>
         <property name="nomcategoria" type="string">
-            <column name="NOMCATEGORIA" length="50" />
+           <column name="NOMCATEGORIA" length="50" />
         </property>
+<!--        <many-to-one name="nomcategoria" class="domainModel.Categoria" column="NOMCATEGORIA" />-->
         <property name="nompoblacio" type="string">
             <column name="NOMPOBLACIO" length="100" />
         </property>
@@ -24,6 +25,10 @@
         <set name="habitacions" table="HABITACIO">
             <key column="NOM_HOTEL" />
             <one-to-many class="domainModel.Habitacio"/>
+        </set>
+        <set name="comentaris" table="COMENTARI">
+            <key column="NOM_HOTEL" />
+            <one-to-many class="domainModel.Comentari"/>
         </set>
     </class>
 </hibernate-mapping>

@@ -3,7 +3,6 @@ package domainModel;
 
 public class Comentari  implements java.io.Serializable {
 
-
     private ComentariId id;
     private Integer avaluacio;
     private String descripcio;
@@ -11,7 +10,6 @@ public class Comentari  implements java.io.Serializable {
     public Comentari() {
     }
 
-	
     public Comentari(ComentariId id) {
         this.id = id;
     }
