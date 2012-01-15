@@ -1,23 +1,37 @@
 package domainControllers;
 
+import DataInterface.ICtrlHotel;
+import Factories.CtrlDataFactoria;
+import domainModel.Hotel;
 import java.util.Date;
-import tupleTypes.HabitacioTipusPreu;
+import tupleTypes.HabitacioNumPreu;
 
 public class trSeleccionarHabitacio extends Transaccio {
 
-    private HabitacioTipusPreu dades;
+    private HabitacioNumPreu dades;
     private String tipusHab;
     private Date dIni;
     private Date dFi;
+    private String hotel;
+
+    trSeleccionarHabitacio(String hotel, String tipusHab, Date dIni, Date dFi) {
+        
+        this.hotel = hotel;
+        this.tipusHab = tipusHab;
+        this.dIni = dIni;
+        this.dFi = dFi;
+    }
     
     @Override
     public void executa() {
-        // TODO
+        
+        ICtrlHotel ch = CtrlDataFactoria.getInstance().getCtrlHotel();
+        Hotel h = ch.getHotel(this.hotel);
+        this.dades = h.seleccionarHabitacio(this.tipusHab, this.dIni, this.dFi);
     }
     
-    public HabitacioTipusPreu obtenirResultat() {
-        // TODO
-        dades = null;
-        return dades;
+    public HabitacioNumPreu obtenirResultat() {
+
+        return this.dades;
     }
 }

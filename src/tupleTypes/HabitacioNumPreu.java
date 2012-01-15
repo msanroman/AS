@@ -1,13 +1,13 @@
 package tupleTypes;
 
-public class HabitacioTipusPreu {
+public class HabitacioNumPreu {
 	
-	public String tipusHab;
+	public int numHab;
 	public float preu;
 
-	public HabitacioTipusPreu(String tipusHab, float preu) {
+	public HabitacioNumPreu(int numHab, float preu) {
 		
-		this.tipusHab = tipusHab;
+		this.numHab = numHab;
 		this.preu = preu;
 	}
 }
