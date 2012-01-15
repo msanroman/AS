@@ -13,20 +13,16 @@ import javax.swing.JTextField;
 
 public class VistaPreu extends JPanel {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private VistaInicial vistaInicial;
 	private JTextField textField;
-	private String dni;
 
-	/**
-	 * Create the panel.
-	 */
 	public VistaPreu(VistaInicial vistaInicial) {
+
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+
 		this.vistaInicial = vistaInicial;
+
 		Box horizontalBox = Box.createHorizontalBox();
 		add(horizontalBox);
 
@@ -37,7 +33,6 @@ public class VistaPreu extends JPanel {
 		horizontalBox.add(textField);
 		textField.setColumns(10);
 		textField.setMaximumSize(new Dimension(200, 20));
-
 		textField.addKeyListener(new TextFieldChangeListener());
 
 		Component horizontalGlue2 = Box.createHorizontalGlue();
@@ -45,14 +40,12 @@ public class VistaPreu extends JPanel {
 	}
 
 	public String getDni() {
-		return dni;
+		return textField.getText();
 	}
 
 	class TextFieldChangeListener implements KeyListener {
 		@Override
 		public void keyTyped(KeyEvent arg0) {
-			JTextField aux = (JTextField) arg0.getSource();
-			dni = aux.getText();
 		}
 
 		@Override

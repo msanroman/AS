@@ -19,6 +19,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import tupleTypes.HotelAmbHabitacions;
+import javax.swing.SwingConstants;
 
 public class VistaInicial extends JFrame {
 
@@ -79,11 +80,21 @@ public class VistaInicial extends JFrame {
 
 		Box verticalBox_1 = Box.createVerticalBox();
 		contentPane.add(verticalBox_1, BorderLayout.SOUTH);
+		
+		Box horizontalBox_6 = Box.createHorizontalBox();
+		verticalBox_1.add(horizontalBox_6);
+				
+				Component horizontalGlue_5 = Box.createHorizontalGlue();
+				horizontalBox_6.add(horizontalGlue_5);
+		
+				lblMessageArea = new JLabel("");
+				horizontalBox_6.add(lblMessageArea);
+				lblMessageArea.setHorizontalAlignment(SwingConstants.CENTER);
+				
+				Component horizontalGlue_1 = Box.createHorizontalGlue();
+				horizontalBox_6.add(horizontalGlue_1);
 
-		lblMessageArea = new JLabel("");
-		verticalBox_1.add(lblMessageArea);
-
-		Component verticalStrut_3 = Box.createVerticalStrut(10);
+		Component verticalStrut_3 = Box.createVerticalStrut(20);
 		verticalBox_1.add(verticalStrut_3);
 
 		Box horizontalBox_4 = Box.createHorizontalBox();
@@ -303,7 +314,6 @@ public class VistaInicial extends JFrame {
 	}
 
 	public void mostraMissatge(String missatge) {
-		System.out.print("good too");
 		lblMessageArea.setText(missatge);
 		lblMessageArea.setVisible(true);
 	}
@@ -392,7 +402,6 @@ public class VistaInicial extends JFrame {
 
 		contentPane.add(verticalBoxLbl, BorderLayout.NORTH);
 
-		System.out.print("mostraHotels " + state);
 		card.show(panelCard, "hotels");
 
 		state = HOTELS;

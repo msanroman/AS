@@ -13,10 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class VistaDadesClient extends JPanel {
-	
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 
 	private VistaInicial vistaInicial;
@@ -25,11 +22,10 @@ public class VistaDadesClient extends JPanel {
 	private JTextField textFieldDataMes;
 	private JTextField textFieldDataDia;
 
-	/**
-	 * Create the panel.
-	 */
 	public VistaDadesClient(VistaInicial vistaInicial) {
+
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+
 		this.vistaInicial = vistaInicial;
 
 		Component verticalStrut = Box.createVerticalStrut(10);
@@ -85,14 +81,14 @@ public class VistaDadesClient extends JPanel {
 		horizontalBox_1.add(textFieldDataDia);
 		textFieldDataDia.setMaximumSize(new Dimension(200, 20));
 		textFieldDataDia.setColumns(10);
+		textFieldDataDia.addKeyListener(new TextFieldChangeListener());
+		textFieldDataDia.addKeyListener(new TextFieldDigitListener());
 
 		Component horizontalGlue_1 = Box.createHorizontalGlue();
 		horizontalBox_1.add(horizontalGlue_1);
 
 		Component verticalGlue = Box.createVerticalGlue();
 		verticalBox.add(verticalGlue);
-		textFieldDataDia.addKeyListener(new TextFieldChangeListener());
-		textFieldDataDia.addKeyListener(new TextFieldDigitListener());
 	}
 
 	public String getNumTarg() {
