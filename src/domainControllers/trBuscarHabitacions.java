@@ -2,7 +2,7 @@ package domainControllers;
 
 import tupleTypes.HotelAmbHabitacions;
 
-abstract public class trBuscarHabitacions extends Transaccio {
+public class trBuscarHabitacions extends Transaccio {
 
     private HotelAmbHabitacions hotelAmbHabitacions;
     

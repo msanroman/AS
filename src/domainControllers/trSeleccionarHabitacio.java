@@ -3,7 +3,7 @@ package domainControllers;
 import java.util.Date;
 import tupleTypes.HabitacioTipusPreu;
 
-abstract public class trSeleccionarHabitacio extends Transaccio {
+public class trSeleccionarHabitacio extends Transaccio {
 
     private HabitacioTipusPreu dades;
     private String tipusHab;

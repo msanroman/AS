@@ -2,7 +2,7 @@ package domainControllers;
 
 import tupleTypes.DadesClient;
 
-abstract public class trIntroduirDNI extends Transaccio {
+public class trIntroduirDNI extends Transaccio {
 
     private DadesClient dadesClient;
     

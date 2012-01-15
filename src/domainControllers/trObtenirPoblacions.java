@@ -2,7 +2,7 @@ package domainControllers;
 
 import java.util.Set;
 
-abstract public class trObtenirPoblacions extends Transaccio {
+public class trObtenirPoblacions extends Transaccio {
 
     private Set<String> poblacions;
     
