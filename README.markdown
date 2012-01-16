@@ -1,11 +1,13 @@
-﻿#Arquitectura del Software
+Arquitectura del Software
+==================
 
 Aquest és el repositori del codi de l'implementació de les tres entregues que hem realitzat a Arquitectura del Software.
 
 Autors:
-1. Lorena Bes
-2. Josep Lluis Lopez
-3. Miguel San Román
+
++ Lorena Bes
++ Josep Lluis Lopez
++ Miguel San Román
 
 ##Dades inserides
 
