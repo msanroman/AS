@@ -180,7 +180,7 @@ public class VistaInicial extends JFrame {
 		JLabel lblPoblacio = new JLabel("Poblacio:");
 		horizontalBox.add(lblPoblacio);
 
-		Component horizontalStrut_2 = Box.createHorizontalStrut(20);
+		Component horizontalStrut_2 = Box.createHorizontalStrut(24);
 		horizontalBox.add(horizontalStrut_2);
 
 		textFieldPoblacio = new JTextField();
@@ -245,7 +245,7 @@ public class VistaInicial extends JFrame {
 		JLabel lblDataFi = new JLabel("Data fi:");
 		horizontalBox_2.add(lblDataFi);
 
-		Component horizontalStrut = Box.createHorizontalStrut(20);
+		Component horizontalStrut = Box.createHorizontalStrut(35);
 		horizontalBox_2.add(horizontalStrut);
 
 		textFieldDataFiDia = new JTextField();
@@ -347,8 +347,8 @@ public class VistaInicial extends JFrame {
 		JLabel lblPoblacio = new JLabel(textFieldPoblacio.getText());
 		horizontalBox.add(lblPoblacio);
 
-		Component horizontalGlue_8 = Box.createHorizontalGlue();
-		horizontalBox.add(horizontalGlue_8);
+		Component horizontalStrut = Box.createHorizontalStrut(320);
+		horizontalBox.add(horizontalStrut);
 
 		Component verticalStrut = Box.createVerticalStrut(10);
 		verticalBoxLbl.add(verticalStrut);
@@ -367,8 +367,8 @@ public class VistaInicial extends JFrame {
 				+ textFieldDataIniciAny.getText());
 		horizontalBox_1.add(label_2);
 
-		Component horizontalGlue_5 = Box.createHorizontalGlue();
-		horizontalBox_1.add(horizontalGlue_5);
+		Component horizontalStrut_1 = Box.createHorizontalStrut(320);
+		horizontalBox_1.add(horizontalStrut_1);
 
 		Component verticalStrut_1 = Box.createVerticalStrut(10);
 		verticalBoxLbl.add(verticalStrut_1);
@@ -387,8 +387,8 @@ public class VistaInicial extends JFrame {
 				+ textFieldDataFiAny.getText());
 		horizontalBox_2.add(lblDataFi);
 
-		Component horizontalGlue_6 = Box.createHorizontalGlue();
-		horizontalBox_2.add(horizontalGlue_6);
+		Component horizontalStrut_2 = Box.createHorizontalStrut(320);
+		horizontalBox_2.add(horizontalStrut_2);
 
 		Component verticalStrut_2 = Box.createVerticalStrut(10);
 		verticalBoxLbl.add(verticalStrut_2);
@@ -405,8 +405,8 @@ public class VistaInicial extends JFrame {
 		JLabel lblNumOcupants = new JLabel(textFieldNumOcupants.getText());
 		horizontalBox_3.add(lblNumOcupants);
 
-		Component horizontalGlue_7 = Box.createHorizontalGlue();
-		horizontalBox_3.add(horizontalGlue_7);
+		Component horizontalStrut_3 = Box.createHorizontalStrut(320);
+		horizontalBox_3.add(horizontalStrut_3);
 
 		contentPane.add(verticalBoxLbl, BorderLayout.NORTH);
 
@@ -436,8 +436,8 @@ public class VistaInicial extends JFrame {
 		JLabel lblHotel = new JLabel(vistaHotelsTipusHab.getHotelSeleccionat());
 		horizontalBox.add(lblHotel);
 
-		Component horizontalGlue_1 = Box.createHorizontalGlue();
-		horizontalBox.add(horizontalGlue_1);
+		Component horizontalStrut = Box.createHorizontalStrut(320);
+		horizontalBox.add(horizontalStrut);
 
 		Component verticalStrut_2 = Box.createVerticalStrut(10);
 		verticalBoxLbl.add(verticalStrut_2);
@@ -455,8 +455,8 @@ public class VistaInicial extends JFrame {
 				vistaHotelsTipusHab.getHabitacioSeleccionada());
 		horizontalBox_1.add(lblHabitacio);
 
-		Component horizontalGlue_3 = Box.createHorizontalGlue();
-		horizontalBox_1.add(horizontalGlue_3);
+		Component horizontalStrut_1 = Box.createHorizontalStrut(320);
+		horizontalBox_1.add(horizontalStrut_1);
 
 		Component verticalStrut_3 = Box.createVerticalStrut(10);
 		verticalBoxLbl.add(verticalStrut_3);
@@ -473,8 +473,8 @@ public class VistaInicial extends JFrame {
 		JLabel lblPreu = new JLabel(String.valueOf(preu));
 		horizontalBox_4.add(lblPreu);
 
-		Component horizontalGlue_6 = Box.createHorizontalGlue();
-		horizontalBox_4.add(horizontalGlue_6);
+		Component horizontalStrut_4 = Box.createHorizontalStrut(320);
+		horizontalBox_4.add(horizontalStrut_4);
 
 		card.show(panelCard, "preu");
 
@@ -501,8 +501,8 @@ public class VistaInicial extends JFrame {
 		JLabel lblNom = new JLabel(nom);
 		horizontalBox.add(lblNom);
 
-		Component horizontalGlue_1 = Box.createHorizontalGlue();
-		horizontalBox.add(horizontalGlue_1);
+		Component horizontalStrut = Box.createHorizontalStrut(320);
+		horizontalBox.add(horizontalStrut);
 
 		Component verticalStrut_2 = Box.createVerticalStrut(10);
 		verticalBoxLbl.add(verticalStrut_2);
@@ -519,8 +519,8 @@ public class VistaInicial extends JFrame {
 		JLabel lblCognom = new JLabel(cognoms);
 		horizontalBox_1.add(lblCognom);
 
-		Component horizontalGlue_3 = Box.createHorizontalGlue();
-		horizontalBox_1.add(horizontalGlue_3);
+		Component horizontalStrut_1 = Box.createHorizontalStrut(320);
+		horizontalBox_1.add(horizontalStrut_1);
 
 		Component verticalStrut_3 = Box.createVerticalStrut(10);
 		verticalBoxLbl.add(verticalStrut_3);
@@ -537,8 +537,8 @@ public class VistaInicial extends JFrame {
 		JLabel lblMail = new JLabel(mail);
 		horizontalBox_2.add(lblMail);
 
-		Component horizontalGlue_5 = Box.createHorizontalGlue();
-		horizontalBox_2.add(horizontalGlue_5);
+		Component horizontalStrut_2 = Box.createHorizontalStrut(320);
+		horizontalBox_2.add(horizontalStrut_2);
 
 		card.show(panelCard, "client");
 

@@ -1,12 +1,12 @@
 package presentation;
 
-import domainControllers.CtrlReservar;
 import java.util.ArrayList;
 import java.util.Date;
 
 import tupleTypes.DadesClient;
 import tupleTypes.DadesSeleccionarHabitacio;
 import tupleTypes.HotelAmbHabitacions;
+import domainControllers.CtrlReservar;
 
 public class ReservarHabitacioController {
 
@@ -35,6 +35,8 @@ public class ReservarHabitacioController {
 							.mostraMissatge("La poblacio no es troba al sistema");
 				else
 					ex.printStackTrace();
+				reservarHabitacioView.tancar();
+
 			}
 			if (!poblacions.contains(poblacio)) {
 				reservarHabitacioView
@@ -51,6 +53,7 @@ public class ReservarHabitacioController {
 								.mostraMissatge("No hi han hotels disponibles");
 					} else {
 						e.printStackTrace();
+						reservarHabitacioView.tancar();
 					}
 					b = false;
 				}
@@ -79,6 +82,7 @@ public class ReservarHabitacioController {
 						.mostraMissatge("No existeix al sistema un client amb aquest DNI");
 			} else {
 				e.printStackTrace();
+				reservarHabitacioView.tancar();
 			}
 			b = false;
 		}
@@ -104,6 +108,7 @@ public class ReservarHabitacioController {
 
 			} else {
 				e.printStackTrace();
+				reservarHabitacioView.tancar();
 			}
 			b = false;
 		}
