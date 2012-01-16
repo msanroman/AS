@@ -17,6 +17,8 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
 import javax.swing.border.LineBorder;
 
+import antlr.collections.impl.Vector;
+
 import tupleTypes.HabitacionsTuple;
 import tupleTypes.HotelAmbHabitacions;
 
@@ -50,12 +52,21 @@ public class VistaHotelsTipusHab extends JPanel {
 		Component horizontalGlue_5 = Box.createHorizontalGlue();
 		horizontalBox.add(horizontalGlue_5);
 
-		JComboBox<String> comboBox = new JComboBox<String>();
-		horizontalBox.add(comboBox);
+		/*JComboBox<String> comboBox = new JComboBox<String>();
+		horizontalBox.add(comboBox);*/
 
-		for (HotelAmbHabitacions hotel : informacioHotels) {
+		String noms[] = new String[informacioHotels.size()];
+		
+		/*for (HotelAmbHabitacions hotel : informacioHotels) {
 			comboBox.addItem(hotel.infoHotel.nom);
+		}*/
+		
+		for (int i = 0; i < informacioHotels.size(); i++) {
+			noms[i] = informacioHotels.get(i).infoHotel.nom;
 		}
+		
+		JComboBox<String> comboBox = new JComboBox<String>(noms);
+		horizontalBox.add(comboBox);
 
 		comboBox.addItemListener(new ItemListener() {
 			@Override
