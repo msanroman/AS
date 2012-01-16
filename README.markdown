@@ -16,6 +16,106 @@ Autors:
 + Hem canviat la clau primària de reserva que era (nomHotel, numero, dataInici) per idReserva, ja que així ho podiem autoincrementar i ja era una clau candidata.
 + Hem passat més paràmetres a la trPagament perque si no no podiem accedir a dades com l'habitacio o el client que necessitaven afegir aquella reserva a les seves coleccions.
 
+##Estructura de taules
+
+    create table "ROOT".BONS_HOTELS
+    (
+      QUOTA_FIXA DOUBLE,
+    	QUOTA_VARIABLE DOUBLE
+    );
+    
+    
+    create table "ROOT".CLIENT
+    (
+    	DNI VARCHAR(10) not null primary key,
+    	NOM VARCHAR(50),
+    	COGNOMS VARCHAR(100),
+    	EMAIL VARCHAR(50)
+    );
+    
+    create table "ROOT".CATEGORIA
+    (
+        NOM VARCHAR(50) not null primary key
+    );
+    
+    create table "ROOT".POBLACIO
+    (
+    	NOM VARCHAR(100) not null primary key
+    );
+    
+    create table "ROOT".HOTEL
+    (
+    	NOM VARCHAR(50) not null primary key,
+    	DESCRIPCIO VARCHAR(500),
+    	NOMCATEGORIA VARCHAR(50),
+    	NOMPOBLACIO VARCHAR(100),
+    FOREIGN KEY(NOMCATEGORIA) REFERENCES CATEGORIA(NOM),
+    FOREIGN KEY(NOMPOBLACIO) REFERENCES POBLACIO(NOM)
+    );
+    
+    create table "ROOT".COMENTARI
+    (
+    	NOM_HOTEL VARCHAR(50),
+    	DNI_CLIENT VARCHAR(10),
+    	DATA_COMENTARI TIMESTAMP,
+    	AVALUACIO INTEGER,
+    	DESCRIPCIO VARCHAR(500),
+    PRIMARY KEY (NOM_HOTEL,DNI_CLIENT,DATA_COMENTARI),
+    FOREIGN KEY(NOM_HOTEL) REFERENCES HOTEL(NOM),
+    FOREIGN KEY(DNI_CLIENT) REFERENCES CLIENT(DNI)
+    );
+    
+    create table "ROOT".TIPUS_HABITACIO
+    (
+    	NOM VARCHAR(50) not null primary key,
+    	CAPACITAT INTEGER,
+    	DESCRIPCIO VARCHAR(100)
+    );
+    
+    create table "ROOT".HABITACIO
+    (
+    	NOM_HOTEL VARCHAR(50),
+    	NUMERO INTEGER,
+    	NOMTIPUS VARCHAR(50),
+            PRIMARY KEY(NOM_HOTEL,NUMERO),
+    FOREIGN KEY(NOMTIPUS) REFERENCES TIPUS_HABITACIO(NOM),
+    FOREIGN KEY(NOM_HOTEL) REFERENCES HOTEL(NOM)
+    );
+    
+    create table "ROOT".PREU_TIPUS_HABITACIO
+    (
+    	NOM_HOTEL VARCHAR(50),
+    	NOMTIPUS VARCHAR(50),
+    	PREU FLOAT,
+    	PRIMARY KEY(NOM_HOTEL,NOMTIPUS),
+    	FOREIGN KEY(NOM_HOTEL) REFERENCES HOTEL(NOM),
+    	FOREIGN KEY(NOMTIPUS) REFERENCES TIPUS_HABITACIO(NOM)
+    );
+    
+    CREATE TABLE PREUSTRATEGY (
+        NOM_HOTEL VARCHAR(50),
+        NOMTIPUS VARCHAR(50),
+        PERCENTATGE FLOAT,
+        DESCOMPTE FLOAT,
+        PRIMARY KEY(NOM_HOTEL,NOMTIPUS),
+        FOREIGN KEY(NOM_HOTEL,NOMTIPUS) REFERENCES PREU_TIPUS_HABITACIO(NOM_HOTEL, NOMTIPUS),
+        CHECK ((PREUSTRATEGY.PERCENTATGE IS NOT NULL OR PREUSTRATEGY.DESCOMPTE IS NOT NULL) AND
+        (PREUSTRATEGY.PERCENTATGE IS NULL OR PREUSTRATEGY.DESCOMPTE IS NULL))
+    );
+    
+    
+    create table "ROOT".RESERVA
+    (
+    	NOM_HOTEL VARCHAR(50),
+    	NUMERO INTEGER,
+    	DATA_INICI TIMESTAMP,
+    	DATA_RESERVA TIMESTAMP,
+    	DATA_FI TIMESTAMP,
+    	ID_RESERVA INTEGER GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
+    	PREU_TOTAL DOUBLE,
+    	PRIMARY KEY(ID_RESERVA),
+      FOREIGN KEY(NOM_HOTEL, NUMERO) REFERENCES HABITACIO(NOM_HOTEL, NUMERO)
+    );
 
 ##Dades inserides
 
