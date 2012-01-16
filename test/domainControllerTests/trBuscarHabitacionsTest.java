@@ -127,6 +127,7 @@ public class trBuscarHabitacionsTest {
             ex.printStackTrace();
             fail();
         }
+        clearDatabase();
     }
     
     
