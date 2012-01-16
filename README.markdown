@@ -3,9 +3,9 @@
 Aquest és el repositori del codi de l'implementació de les tres entregues que hem realitzat a Arquitectura del Software.
 
 Autors:
-+ Lorena Bes
-+ Josep Lluis Lopez
-+ Miguel San Román
+1. Lorena Bes
+2. Josep Lluis Lopez
+3. Miguel San Román
 
 ##Dades inserides
 
