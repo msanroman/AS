@@ -115,6 +115,12 @@ public class VistaHotelsTipusHab extends JPanel {
 		Component horizontalGlue_2 = Box.createHorizontalGlue();
 		horizontalBox_2.add(horizontalGlue_2);
 
+		JLabel lblNotaTag = new JLabel("Avaluació dels clients: ");
+		horizontalBox_2.add(lblNotaTag);
+
+		Component horizontalStrut = Box.createHorizontalStrut(10);
+		horizontalBox_2.add(horizontalStrut);
+
 		lblNota = new JLabel(
 				String.valueOf(hotelSeleccionat.infoHotel.avaluacio));
 		horizontalBox_2.add(lblNota);
