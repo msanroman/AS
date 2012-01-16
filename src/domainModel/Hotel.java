@@ -104,7 +104,7 @@ public class Hotel implements java.io.Serializable {
         for(PreuTipusHabitacio p: this.preuTipusHabitacio) {
 
             if (tipusHabitacio.equals(p.getId().getNomtipus())) {
-                preu = p.getPreu();
+                preu = p.getPreuAmbEstrategia();
                 preu = preu*(dFi.getTime() - dIni.getTime())/TIME_IN_MILLIS;
             }
         }
@@ -139,7 +139,7 @@ public class Hotel implements java.io.Serializable {
 						double preuTotal = 0;
 						for(PreuTipusHabitacio p : preuTipusHabitacio) {
 							if (p.getId().getNomtipus().equals(tipus)) {
-								double preu = p.getPreu();
+								double preu = p.getPreuAmbEstrategia();
 								long dies = (dFi.getTime() - dIni.getTime())/TIME_IN_MILLIS;
 								preuTotal = preu*dies;
 								break;

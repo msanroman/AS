@@ -1,6 +1,9 @@
 package domainControllerTests;
 
 import Hibernate.NewHibernateUtil;
+import Strategies.IPreuStrategy;
+import Strategies.PreuAmbDescompte;
+import Strategies.PreuAmbDescompteId;
 import domainControllers.trBuscarHabitacions;
 import domainModel.*;
 import java.util.ArrayList;
@@ -105,14 +108,16 @@ public class trBuscarHabitacionsTest {
         Hotel h = new Hotel("Hotel", "desc", "Categoria1", "Manresa");
         HabitacioId hId = new HabitacioId("Hotel", 1);
         TipusHabitacio tipusHab = new TipusHabitacio("Suite", 3, "descHabitacio");
-        PreuTipusHabitacio preuTipusHab = new PreuTipusHabitacio(new PreuTipusHabitacioId("Hotel", "Suite"), 1000d);
+        IPreuStrategy descompte = new PreuAmbDescompte(new PreuTipusHabitacioId("Hotel", "Suite"), 300f);
+        PreuTipusHabitacio preuTipusHab = new PreuTipusHabitacio(new PreuTipusHabitacioId("Hotel", "Suite"), 1000f, descompte);
         Habitacio hab = new Habitacio(hId, "Suite");
-        
+
         session.saveOrUpdate(p);
         session.saveOrUpdate(c);
         session.saveOrUpdate(h);
         session.saveOrUpdate(tipusHab);
         session.saveOrUpdate(preuTipusHab);
+        session.saveOrUpdate(descompte);
         session.saveOrUpdate(hab);
         session.getTransaction().commit();
     }
