@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package domainControllerTests;
 
 import Hibernate.NewHibernateUtil;
@@ -12,10 +8,6 @@ import org.hibernate.Session;
 import org.junit.*;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author Miguel
- */
 public class trIntroduirDNItests {
     
     public trIntroduirDNItests() {

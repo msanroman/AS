@@ -1,16 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package Factories;
 
 import Adapters.IPagamentAdapter;
 import Adapters.PagamentAdapter;
 
-/**
- *
- * @author Endymiion
- */
 public class ServiceFactory {
     
     private static ServiceFactory instance;

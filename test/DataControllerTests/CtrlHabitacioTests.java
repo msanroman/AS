@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package DataControllerTests;
 
 import DataInterface.ICtrlHabitacio;
@@ -14,10 +10,6 @@ import domainModel.TipusHabitacio;
 import org.hibernate.classic.Session;
 import org.junit.*;
 
-/**
- *
- * @author Miguel
- */
 public class CtrlHabitacioTests {
     
     private static CtrlDataFactoria factoria;

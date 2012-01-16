@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package DataControllers;
 
 import DataInterface.ICtrlPoblacio;
@@ -10,10 +6,6 @@ import domainModel.Poblacio;
 import java.util.ArrayList;
 import org.hibernate.Session;
 
-/**
- *
- * @author Endymiion
- */
 public class CtrlPoblacio implements ICtrlPoblacio {
 
     @Override

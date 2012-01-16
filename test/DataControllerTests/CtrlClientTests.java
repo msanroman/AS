@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package DataControllerTests;
 
 import DataInterface.ICtrlClient;
@@ -13,10 +9,6 @@ import org.hibernate.classic.Session;
 import org.junit.*;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author Miguel
- */
 public class CtrlClientTests {
     
     private static CtrlDataFactoria factoria;

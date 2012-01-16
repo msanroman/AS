@@ -1,13 +1,5 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package ServiceLocator;
 
-/**
- *
- * @author Endymiion
- */
 public class ServiceLocator {
     
     private static ServiceLocator instance;

@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package DataControllerTests;
 
 import DataControllers.CtrlPoblacio;
@@ -16,10 +12,6 @@ import org.hibernate.Session;
 import org.junit.*;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author Endymiion
- */
 public class CtrlPoblacioTests {
     
     private static CtrlDataFactoria factoria;

@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package domainControllerTests;
 
 import Hibernate.NewHibernateUtil;
@@ -14,10 +10,6 @@ import org.hibernate.Session;
 import org.junit.*;
 import tupleTypes.InfoHotel;
 
-/**
- *
- * @author Endymiion
- */
 public class trSeleccionarHabitacioTest {
     
     public trSeleccionarHabitacioTest() {
@@ -95,7 +87,6 @@ public class trSeleccionarHabitacioTest {
         trSeleccionarHabitacio tr = new trSeleccionarHabitacio("Ritz", "Suite", new Date(3600000), new Date(3600000*2));
         tr.executa();
         Assert.assertEquals(104, tr.obtenirResultat().numHab);
-        System.out.println(tr.obtenirResultat().preu);
         Assert.assertTrue(tr.obtenirResultat().preu == Float.valueOf("700"));
     }
     
