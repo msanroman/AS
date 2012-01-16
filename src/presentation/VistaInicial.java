@@ -7,9 +7,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 import javax.swing.Box;
 import javax.swing.JButton;
@@ -102,18 +105,24 @@ public class VistaInicial extends JFrame {
 				switch (state) {
 				case FIRST:
 					Calendar calendarInici = Calendar.getInstance();
-					calendarInici.set(Calendar.DAY_OF_MONTH, Integer.parseInt(textFieldDataIniciDia.getText()));
-					calendarInici.set(Calendar.MONTH, Integer.parseInt(textFieldDataIniciMes.getText()));
-					calendarInici.set(Calendar.YEAR, Integer.parseInt(textFieldDataIniciAny.getText()));
+					calendarInici.set(Calendar.DAY_OF_MONTH,
+							Integer.parseInt(textFieldDataIniciDia.getText()));
+					calendarInici.set(Calendar.MONTH,
+							Integer.parseInt(textFieldDataIniciMes.getText()));
+					calendarInici.set(Calendar.YEAR,
+							Integer.parseInt(textFieldDataIniciAny.getText()));
 
 					Calendar calendarFi = Calendar.getInstance();
-					calendarFi.set(Calendar.DAY_OF_MONTH, Integer.parseInt(textFieldDataFiDia.getText()));
-					calendarFi.set(Calendar.MONTH, Integer.parseInt(textFieldDataFiMes.getText()));
-					calendarFi.set(Calendar.YEAR, Integer.parseInt(textFieldDataFiAny.getText()));
-					
+					calendarFi.set(Calendar.DAY_OF_MONTH,
+							Integer.parseInt(textFieldDataFiDia.getText()));
+					calendarFi.set(Calendar.MONTH,
+							Integer.parseInt(textFieldDataFiMes.getText()));
+					calendarFi.set(Calendar.YEAR,
+							Integer.parseInt(textFieldDataFiAny.getText()));
+
 					Date dataInici = calendarInici.getTime();
 					Date dataFi = calendarFi.getTime();
-					
+
 					reservarHabitacioController.prOkBuscarHabitacio(
 							textFieldPoblacio.getText(),
 							Integer.parseInt(textFieldNumOcupants.getText()),
@@ -197,7 +206,7 @@ public class VistaInicial extends JFrame {
 		textFieldDataIniciDia = new JTextField();
 		horizontalBox_1.add(textFieldDataIniciDia);
 		textFieldDataIniciDia.setColumns(10);
-		textFieldDataIniciDia.addKeyListener(new TextFieldChangeListener());
+		textFieldDataIniciDia.addKeyListener(new TextFieldDateChangeListener());
 		textFieldDataIniciDia.addKeyListener(new TextFieldDigitListener());
 
 		JLabel label_2 = new JLabel("/");
@@ -206,7 +215,7 @@ public class VistaInicial extends JFrame {
 		textFieldDataIniciMes = new JTextField();
 		horizontalBox_1.add(textFieldDataIniciMes);
 		textFieldDataIniciMes.setColumns(10);
-		textFieldDataIniciMes.addKeyListener(new TextFieldChangeListener());
+		textFieldDataIniciMes.addKeyListener(new TextFieldDateChangeListener());
 		textFieldDataIniciMes.addKeyListener(new TextFieldDigitListener());
 
 		JLabel label_3 = new JLabel("/");
@@ -215,7 +224,7 @@ public class VistaInicial extends JFrame {
 		textFieldDataIniciAny = new JTextField();
 		horizontalBox_1.add(textFieldDataIniciAny);
 		textFieldDataIniciAny.setColumns(10);
-		textFieldDataIniciAny.addKeyListener(new TextFieldChangeListener());
+		textFieldDataIniciAny.addKeyListener(new TextFieldDateChangeListener());
 		textFieldDataIniciAny.addKeyListener(new TextFieldDigitListener());
 
 		Component horizontalStrut_5 = Box.createHorizontalStrut(20);
@@ -242,7 +251,7 @@ public class VistaInicial extends JFrame {
 		textFieldDataFiDia = new JTextField();
 		horizontalBox_2.add(textFieldDataFiDia);
 		textFieldDataFiDia.setColumns(10);
-		textFieldDataFiDia.addKeyListener(new TextFieldChangeListener());
+		textFieldDataFiDia.addKeyListener(new TextFieldDateChangeListener());
 		textFieldDataFiDia.addKeyListener(new TextFieldDigitListener());
 
 		JLabel label = new JLabel("/");
@@ -251,7 +260,7 @@ public class VistaInicial extends JFrame {
 		textFieldDataFiMes = new JTextField();
 		horizontalBox_2.add(textFieldDataFiMes);
 		textFieldDataFiMes.setColumns(10);
-		textFieldDataFiMes.addKeyListener(new TextFieldChangeListener());
+		textFieldDataFiMes.addKeyListener(new TextFieldDateChangeListener());
 		textFieldDataFiMes.addKeyListener(new TextFieldDigitListener());
 
 		JLabel label_1 = new JLabel("/");
@@ -260,7 +269,7 @@ public class VistaInicial extends JFrame {
 		textFieldDataFiAny = new JTextField();
 		horizontalBox_2.add(textFieldDataFiAny);
 		textFieldDataFiAny.setColumns(10);
-		textFieldDataFiAny.addKeyListener(new TextFieldChangeListener());
+		textFieldDataFiAny.addKeyListener(new TextFieldDateChangeListener());
 		textFieldDataFiAny.addKeyListener(new TextFieldDigitListener());
 
 		Component horizontalStrut_6 = Box.createHorizontalStrut(20);
@@ -571,6 +580,57 @@ public class VistaInicial extends JFrame {
 
 		@Override
 		public void keyPressed(KeyEvent arg0) {
+		}
+	}
+
+	class TextFieldDateChangeListener implements KeyListener {
+		@Override
+		public void keyTyped(KeyEvent arg0) {
+		}
+
+		@Override
+		public void keyReleased(KeyEvent arg0) {
+			@SuppressWarnings("unused")
+			JTextField textField = (JTextField) arg0.getSource();
+			if (textFieldPoblacio.getText().length() > 0
+					&& textFieldNumOcupants.getText().length() > 0
+					&& textFieldDataFiAny.getText().length() > 0
+					&& textFieldDataFiMes.getText().length() > 0
+					&& textFieldDataFiDia.getText().length() > 0
+					&& textFieldDataIniciMes.getText().length() > 0
+					&& textFieldDataIniciDia.getText().length() > 0
+					&& textFieldDataIniciAny.getText().length() > 0) {
+
+				String diaFi = textFieldDataFiDia.getText();
+				String mesFi = textFieldDataFiMes.getText();
+				String anyFi = textFieldDataFiAny.getText();
+
+				String diaInici = textFieldDataIniciDia.getText();
+				String mesInici = textFieldDataIniciMes.getText();
+				String anyInici = textFieldDataIniciAny.getText();
+
+				if (isFechaValida(diaFi + "/" + mesFi + "/" + anyFi)
+						&& isFechaValida(diaInici + "/" + mesInici + "/"
+								+ anyInici))
+					habilitarOk(true);
+			} else
+				habilitarOk(false);
+		}
+
+		@Override
+		public void keyPressed(KeyEvent arg0) {
+		}
+
+		private boolean isFechaValida(String fechax) {
+			try {
+				SimpleDateFormat formatoFecha = new SimpleDateFormat(
+						"dd/MM/yyyy", Locale.getDefault());
+				formatoFecha.setLenient(false);
+				formatoFecha.parse(fechax);
+			} catch (ParseException e) {
+				return false;
+			}
+			return true;
 		}
 	}
 }

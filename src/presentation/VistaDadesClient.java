@@ -4,8 +4,11 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -58,12 +61,12 @@ public class VistaDadesClient extends JPanel {
 		JLabel lblDataCad = new JLabel("Data de caducitat:   ");
 		horizontalBox_1.add(lblDataCad);
 
-		textFieldDataAny = new JTextField();
-		horizontalBox_1.add(textFieldDataAny);
-		textFieldDataAny.setMaximumSize(new Dimension(200, 20));
-		textFieldDataAny.setColumns(10);
-		textFieldDataAny.addKeyListener(new TextFieldChangeListener());
-		textFieldDataAny.addKeyListener(new TextFieldDigitListener());
+		textFieldDataDia = new JTextField();
+		horizontalBox_1.add(textFieldDataDia);
+		textFieldDataDia.setMaximumSize(new Dimension(200, 20));
+		textFieldDataDia.setColumns(10);
+		textFieldDataDia.addKeyListener(new TextFieldChangeListener());
+		textFieldDataDia.addKeyListener(new TextFieldDigitListener());
 
 		JLabel label = new JLabel("/");
 		horizontalBox_1.add(label);
@@ -78,12 +81,12 @@ public class VistaDadesClient extends JPanel {
 		JLabel label_1 = new JLabel("/");
 		horizontalBox_1.add(label_1);
 
-		textFieldDataDia = new JTextField();
-		horizontalBox_1.add(textFieldDataDia);
-		textFieldDataDia.setMaximumSize(new Dimension(200, 20));
-		textFieldDataDia.setColumns(10);
-		textFieldDataDia.addKeyListener(new TextFieldChangeListener());
-		textFieldDataDia.addKeyListener(new TextFieldDigitListener());
+		textFieldDataAny = new JTextField();
+		horizontalBox_1.add(textFieldDataAny);
+		textFieldDataAny.setMaximumSize(new Dimension(200, 20));
+		textFieldDataAny.setColumns(10);
+		textFieldDataAny.addKeyListener(new TextFieldChangeListener());
+		textFieldDataAny.addKeyListener(new TextFieldDigitListener());
 
 		Component horizontalGlue_1 = Box.createHorizontalGlue();
 		horizontalBox_1.add(horizontalGlue_1);
@@ -97,11 +100,14 @@ public class VistaDadesClient extends JPanel {
 	}
 
 	public Date getDataCaducitat() {
-		
+
 		Calendar calendar = Calendar.getInstance();
-		calendar.set(Calendar.DAY_OF_MONTH, Integer.parseInt(textFieldDataDia.getText()));
-		calendar.set(Calendar.MONTH, Integer.parseInt(textFieldDataMes.getText()));
-		calendar.set(Calendar.YEAR, Integer.parseInt(textFieldDataAny.getText()));
+		calendar.set(Calendar.DAY_OF_MONTH,
+				Integer.parseInt(textFieldDataDia.getText()));
+		calendar.set(Calendar.MONTH,
+				Integer.parseInt(textFieldDataMes.getText()));
+		calendar.set(Calendar.YEAR,
+				Integer.parseInt(textFieldDataAny.getText()));
 		return calendar.getTime();
 	}
 
@@ -116,13 +122,32 @@ public class VistaDadesClient extends JPanel {
 					&& textFieldDataAny.getText().length() > 0
 					&& textFieldDataMes.getText().length() > 0
 					&& textFieldDataDia.getText().length() > 0) {
-				vistaInicial.habilitarOk(true);
+
+				String dia = textFieldDataDia.getText();
+				String mes = textFieldDataMes.getText();
+				String any = textFieldDataAny.getText();
+
+				if (isFechaValida(dia + "/" + mes + "/" + any))
+					vistaInicial.habilitarOk(true);
+
 			} else
 				vistaInicial.habilitarOk(false);
 		}
 
 		@Override
 		public void keyPressed(KeyEvent arg0) {
+		}
+
+		private boolean isFechaValida(String fechax) {
+			try {
+				SimpleDateFormat formatoFecha = new SimpleDateFormat(
+						"dd/MM/yyyy", Locale.getDefault());
+				formatoFecha.setLenient(false);
+				formatoFecha.parse(fechax);
+			} catch (ParseException e) {
+				return false;
+			}
+			return true;
 		}
 	}
 }
