@@ -87,10 +87,12 @@ public class Habitacio implements java.io.Serializable{
 	public boolean estaDisponible(Date dIni, Date dFi) {
 
                 if (this.reserves != null) {
-                    for(Reserva r: this.reserves)
-                            if(r.getDataFi().getTime() >= dIni.getTime())
-                                    if(r.getId().getDataInici().getTime() >= dFi.getTime())
-                                            return false;
+                    for(Reserva r: this.reserves) {
+                        if(r.getDataFi().getTime() >= dIni.getTime()) {
+                            if(r.getId().getDataInici().getTime() <= dFi.getTime()) return false;
+                        }
+                                    
+                    }
                 }
 		return true;
 	}
