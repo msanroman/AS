@@ -19,6 +19,8 @@ public class main {
         javax.swing.SwingUtilities.invokeLater (
             new Runnable() {
                 public void run() {
+                    new DataLoader().clearDatabase();
+                    new DataLoader().fillDatabase();
                     ReservarHabitacioController r = new ReservarHabitacioController();
                 }
         });

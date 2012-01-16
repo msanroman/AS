@@ -133,10 +133,10 @@ public class Hotel implements java.io.Serializable {
 						}
 					}
 					if (!tipusExistent) {
-						double preuTotal = 0;
+						float preuTotal = 0;
 						for(PreuTipusHabitacio p : preuTipusHabitacio) {
 							if (p.getId().getNomtipus().equals(tipus)) {
-								double preu = p.getPreuAmbEstrategia();
+								float preu = p.getPreuAmbEstrategia();
 								long dies = (dFi.getTime() - dIni.getTime())/TIME_IN_MILLIS;
 								preuTotal = preu*dies;
 								break;
