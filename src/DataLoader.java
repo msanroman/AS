@@ -10,51 +10,16 @@ import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
-/*
- * The data that will be inserted when it's fully implemented
- * 
-  -- Poblacions --
-
-1. Manresa
-2. Barcelona
-
--- Hotels --
-
-1. Hotel Manresa
-2. Hotel Pastel Manresa
-3. Hotel Princesa Sofia
-4. Hotel Pastel Sofia
-
--- TipusHabitacio --
-
-1. Suite
-2. Standard
-
--- PreuTipusHabitacio --
-
-1. ManresaSuite500minus100
-2. ManresaStandard300minus100
-3. PastelManresaSuite400/2
-4. PastelManresaStandard200/2
-5. PrincesaSuite1000
-6. PrincesaStandard600
-
--- Habitacio --
-
-1. HabitacioSuiteManresa
-2. HabitacioStandardPastel
-3. HabitacioPrincesaSuite
-4. HabitacioPrincesaStandard
- * 
- * 
- */
-
-
 public class DataLoader {
     public void fillDatabase() {
         Session session = NewHibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
 
+        Client expected = new Client("46975089G", "Miguel", "San Román", "msanromanv@gmail.com");
+        
+        Comentari comment = new Comentari(new ComentariId("Hotel Pastel Manresa", "46975089G", new Date(100)), 10, "Es un pastel de hotel, pero me encanta!");
+        Comentari comment2 = new Comentari(new ComentariId("Hotel Pastel Manresa", "46975089G", new Date(50)), 0, "Es un pastel de hotel!");
+        
         Poblacio p = new Poblacio("Manresa");
         Categoria c = new Categoria("Categoria1");
         Hotel h = new Hotel("Hotel Manresa", "desc", "Categoria1", "Manresa");
@@ -81,10 +46,13 @@ public class DataLoader {
         Reserva res = new Reserva("Hotel Manresa", 1, new Date(100), new Date(100), new Date(101), 500d);
         Reserva res2 = new Reserva("Hotel Pastel Manresa", 2, new Date(100), new Date(100), new Date(101), 150d);
 
+        session.saveOrUpdate(expected);
         session.saveOrUpdate(p);
         session.saveOrUpdate(c);
         session.saveOrUpdate(h);
         session.saveOrUpdate(h2);
+        session.saveOrUpdate(comment);
+        session.saveOrUpdate(comment2);
         session.saveOrUpdate(tipusHab);
         session.saveOrUpdate(tipusHab2);
         session.saveOrUpdate(preuTipusHab);
@@ -118,11 +86,15 @@ public class DataLoader {
         query.executeUpdate();
         query = session.createQuery("delete from TipusHabitacio");
         query.executeUpdate();
+        query = session.createQuery("delete from Comentari");
+        query.executeUpdate();
         query = session.createQuery("delete from Hotel");
         query.executeUpdate();
         query = session.createQuery("delete from Categoria");
         query.executeUpdate();
         query = session.createQuery("delete from Poblacio");
+        query.executeUpdate();
+        query = session.createQuery("delete from Client");
         query.executeUpdate();
         session.getTransaction().commit();
     }

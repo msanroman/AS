@@ -18,7 +18,7 @@ public class Hotel implements java.io.Serializable {
     private Set<PreuTipusHabitacio> preuTipusHabitacio = new HashSet();
     private Set<Habitacio> habitacions = new HashSet();
     private Set<Comentari> comentaris = new HashSet();
-    private static long TIME_IN_MILLIS = 3600000;
+    private static long TIME_IN_MILLIS = 3600000*24;
 
     public Hotel() {
     }

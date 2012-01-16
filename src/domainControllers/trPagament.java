@@ -5,11 +5,13 @@ import DataInterface.ICtrlClient;
 import DataInterface.ICtrlHabitacio;
 import Factories.CtrlDataFactoria;
 import Factories.ServiceFactory;
+import Hibernate.NewHibernateUtil;
 import domainModel.Client;
 import domainModel.Habitacio;
 import domainModel.Reserva;
 import domainModel.ReservaId;
 import java.util.Date;
+import org.hibernate.Session;
 
 public class trPagament extends Transaccio {
     
@@ -48,6 +50,11 @@ public class trPagament extends Transaccio {
                     new Date(), this.dFi, (double) this.preuTotal);
             h.afegeixReserva(r);
             c.afegeixReserva(r);
+            
+            Session session = NewHibernateUtil.getSessionFactory().getCurrentSession();
+            session.beginTransaction();
+            session.saveOrUpdate(r);
+            session.getTransaction().commit();
         }
         
     }

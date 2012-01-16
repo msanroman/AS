@@ -54,6 +54,7 @@ public class CtrlReservar {
         DadesClient d = trIntroduirDNI.obtenirResultat();
         
         DadesReserva dadesReserva = new DadesReserva(pob, dIni, dFi, hotel, tipusHab, dni, d, preuTotal);
+        this.dni = dni;
         return dadesReserva;
     }
     
