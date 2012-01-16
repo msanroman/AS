@@ -1,11 +1,21 @@
-﻿#Arquitectura del Software
+﻿Arquitectura del Software
+==================
 
 Aquest és el repositori del codi de l'implementació de les tres entregues que hem realitzat a Arquitectura del Software.
 
 Autors:
+
 + Lorena Bes
-+ Josep Lluis Lopez
++ Josep Lluis López
 + Miguel San Román
+
+##Comentaris sobre el disseny
+
++ URL del repositori de codi: https://github.com/msanroman/AS
++ Hem intentat deixar el codi el més similar possible als diagrames de seqüència, tot i que a vegades un refactor del codi hauria estat una bona opció, a fi d'augmentar la claredat ja que la nostra idea es que es pugui seguir el codi amb el pdf dels diagrames a la ma.
++ Hem canviat la clau primària de reserva que era (nomHotel, numero, dataInici) per idReserva, ja que així ho podiem autoincrementar i ja era una clau candidata.
++ Hem passat més paràmetres a la trPagament perque si no no podiem accedir a dades com l'habitacio o el client que necessitaven afegir aquella reserva a les seves coleccions.
+
 
 ##Dades inserides
 
