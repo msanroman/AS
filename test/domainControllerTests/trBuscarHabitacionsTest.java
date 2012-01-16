@@ -5,8 +5,6 @@ import domainControllers.trBuscarHabitacions;
 import domainModel.*;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -14,10 +12,6 @@ import static org.junit.Assert.fail;
 import org.junit.*;
 import tupleTypes.HotelAmbHabitacions;
 
-/**
- *
- * @author Endymiion
- */
 public class trBuscarHabitacionsTest {
     
     public trBuscarHabitacionsTest() {
@@ -78,7 +72,61 @@ public class trBuscarHabitacionsTest {
             fail();
         }
     }
+    
+    @Test
+    public void testBuscarHabitacionsWithAHotelWithOneRoomWithABlockingBookingAvailableShouldReturnNoAvailableRooms() {
+        
+        clearDatabase();
+        
+        insertLocationWithOneHotelAndOneRoomWithABlockingBooking();
+        trBuscarHabitacions tx = new trBuscarHabitacions("Milan", new Date(100), new Date(103),3);
+        try {
+            tx.executa();
+            ArrayList<HotelAmbHabitacions> hAmbHab = tx.obtenirResultat();
+            fail();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            Assert.assertEquals(ex.getMessage(), "hotelsNoDisp");
+        }
+    }
+    
+    @Test
+    public void testBuscarHabitacionsWithAHotelWithOneRoomWithANonBlockingBookingAvailableShouldReturnOneAvailableRoom() {
+        
+        clearDatabase();
+        
+        insertLocationWithOneHotelAndOneRoomWithANonBlockingBooking();
+        trBuscarHabitacions tx = new trBuscarHabitacions("Barcelona", new Date(102), new Date(103),3);
+        try {
+            tx.executa();
+            ArrayList<HotelAmbHabitacions> hAmbHab = tx.obtenirResultat();
+            Assert.assertEquals(hAmbHab.size(), 1);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            fail();
+        }
+    }
 
+    
+    @Test
+    public void testBuscarHabitacionsWithAHotelWithThreeRoomsWithANonBlockingBookingShouldReturnThreeAvailableRooms() {
+        
+        clearDatabase();
+        
+        insertLocationWithOneHotelAndThreeRoomsWithANonBlockingBooking();
+        trBuscarHabitacions tx = new trBuscarHabitacions("Paris", new Date(200), new Date(203),3);
+        try {
+            tx.executa();
+            ArrayList<HotelAmbHabitacions> hAmbHab = tx.obtenirResultat();
+            Assert.assertEquals(1, hAmbHab.size());
+            Assert.assertEquals(3, hAmbHab.get(0).habitacions.get(0).numeroDisponibles);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            fail();
+        }
+    }
+    
+    
     private void deleteLocation() {
         
         Session session = NewHibernateUtil.getSessionFactory().getCurrentSession();
@@ -116,6 +164,87 @@ public class trBuscarHabitacionsTest {
         session.saveOrUpdate(hab);
         session.getTransaction().commit();
     }
+    
+    private void insertLocationWithOneHotelAndOneRoomWithABlockingBooking() {
+        Session session = NewHibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        
+        Poblacio p = new Poblacio("Milan");
+        Categoria c = new Categoria("Categoria1");
+        Hotel h = new Hotel("Hotel3", "desc", "Categoria1", "Milan");
+        HabitacioId hId = new HabitacioId("Hotel3", 3);
+        TipusHabitacio tipusHab = new TipusHabitacio("Suite3", 3, "descHabitacio");
+        PreuTipusHabitacio preuTipusHab = new PreuTipusHabitacio(new PreuTipusHabitacioId("Hotel3", "Suite3"), 1000d);
+        Habitacio hab = new Habitacio(hId, "Suite3");
+        Reserva res = new Reserva(new ReservaId("Hotel3", 3, new Date(100)), new Date(100), new Date(101), 1000d);
+        
+        session.saveOrUpdate(p);
+        session.saveOrUpdate(c);
+        session.saveOrUpdate(h);
+        session.saveOrUpdate(tipusHab);
+        session.saveOrUpdate(preuTipusHab);
+        session.saveOrUpdate(hab);
+        session.saveOrUpdate(res);
+        session.getTransaction().commit();
+    }
+    
+    private void insertLocationWithOneHotelAndOneRoomWithANonBlockingBooking() {
+        Session session = NewHibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        
+        Poblacio p = new Poblacio("Barcelona");
+        Categoria c = new Categoria("Categoria1");
+        Hotel h = new Hotel("Hotel2", "desc", "Categoria1", "Barcelona");
+        HabitacioId hId = new HabitacioId("Hotel2", 2);
+        TipusHabitacio tipusHab = new TipusHabitacio("Suite2", 3, "descHabitacio");
+        PreuTipusHabitacio preuTipusHab = new PreuTipusHabitacio(new PreuTipusHabitacioId("Hotel2", "Suite2"), 1000d);
+        Habitacio hab = new Habitacio(hId, "Suite2");
+        Reserva res = new Reserva(new ReservaId("Hotel2", 2, new Date(100)), new Date(100), new Date(101), 1000d);
+        
+        session.saveOrUpdate(p);
+        session.saveOrUpdate(c);
+        session.saveOrUpdate(h);
+        session.saveOrUpdate(tipusHab);
+        session.saveOrUpdate(preuTipusHab);
+        session.saveOrUpdate(hab);
+        session.saveOrUpdate(res);
+        session.getTransaction().commit();
+    }
+    
+    private void insertLocationWithOneHotelAndThreeRoomsWithANonBlockingBooking() {
+        Session session = NewHibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        
+        Poblacio p = new Poblacio("Paris");
+        Categoria c = new Categoria("Categoria1");
+        Hotel h = new Hotel("Hotel4", "desc", "Categoria1", "Paris");
+        HabitacioId hId = new HabitacioId("Hotel4", 2);
+        TipusHabitacio tipusHab = new TipusHabitacio("Suite3", 3, "descHabitacio");
+        PreuTipusHabitacio preuTipusHab = new PreuTipusHabitacio(new PreuTipusHabitacioId("Hotel4", "Suite3"), 1000d);
+        Habitacio hab = new Habitacio(hId, "Suite3");
+        Reserva res = new Reserva(new ReservaId("Hotel4", 2, new Date(100)), new Date(100), new Date(101), 1000d);
+        
+        HabitacioId hId2 = new HabitacioId("Hotel4", 5);
+        Habitacio hab2 = new Habitacio(hId2, "Suite3");
+        Reserva res2 = new Reserva(new ReservaId("Hotel4", 5, new Date(102)), new Date(102), new Date(103), 1000d);
+        
+        HabitacioId hId3 = new HabitacioId("Hotel4", 6);
+        Habitacio hab3 = new Habitacio(hId3, "Suite3");
+        Reserva res3 = new Reserva(new ReservaId("Hotel4", 6, new Date(104)), new Date(104), new Date(105), 1000d);
+        
+        session.saveOrUpdate(p);
+        session.saveOrUpdate(c);
+        session.saveOrUpdate(h);
+        session.saveOrUpdate(tipusHab);
+        session.saveOrUpdate(preuTipusHab);
+        session.saveOrUpdate(hab);
+        session.saveOrUpdate(hab2);
+        session.saveOrUpdate(hab3);
+        session.saveOrUpdate(res);
+        session.saveOrUpdate(res2);
+        session.saveOrUpdate(res3);
+        session.getTransaction().commit();
+    }
 
     @After
     public void tearDown() {
@@ -125,7 +254,9 @@ public class trBuscarHabitacionsTest {
         
         Session session = NewHibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
-        Query query = session.createQuery("delete from Habitacio");
+        Query query = session.createQuery("delete from Reserva");
+        query.executeUpdate();
+        query = session.createQuery("delete from Habitacio");
         query.executeUpdate();
         query = session.createQuery("delete from PreuTipusHabitacio");
         query.executeUpdate();
@@ -139,4 +270,5 @@ public class trBuscarHabitacionsTest {
         query.executeUpdate();
         session.getTransaction().commit();
     }
+
 }
