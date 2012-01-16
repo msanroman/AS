@@ -15,14 +15,12 @@ public class trIntroduirDNI extends Transaccio {
     }
     
     @Override
-    public void executa() {
+    public void executa() throws Exception {
             
         CtrlDataFactoria ctrlDataFactoria = CtrlDataFactoria.getInstance();
         ICtrlClient cc = ctrlDataFactoria.getCtrlClient();
         Client c = cc.getClient(dni);
-        info.nom = c.getNom();
-        info.cognoms = c.getCognoms();
-        info.email = c.getEmail();
+        info = new DadesClient(c.getNom(), c.getCognoms(), c.getEmail());
     }
     
     public DadesClient obtenirResultat() {

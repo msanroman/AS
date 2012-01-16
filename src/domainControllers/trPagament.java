@@ -35,7 +35,7 @@ public class trPagament extends Transaccio {
     }
 
     @Override
-    public void executa() {
+    public void executa() throws Exception {
         
         IPagamentAdapter ad = ServiceFactory.getInstance().getPagamentAdapter();
         if(ad.autoritza(this.numTarj, this.dCad, this.preuTotal)) {

@@ -47,7 +47,7 @@ public class CtrlReservar {
         return result;
     }
     
-    public DadesReserva introduirDNI(String dni) {
+    public DadesReserva introduirDNI(String dni) throws Exception {
         
         trIntroduirDNI trIntroduirDNI = new trIntroduirDNI(dni);
         trIntroduirDNI.executa();
@@ -57,7 +57,7 @@ public class CtrlReservar {
         return dadesReserva;
     }
     
-    public void pagament(String numTarj, Date dCad) {
+    public void pagament(String numTarj, Date dCad) throws Exception {
         
         trPagament trPagament = new trPagament(numTarj, dCad, this.preuTotal, this.dni, this.numHab, this.hotel, this.dIni, this.dFi);
         trPagament.executa();

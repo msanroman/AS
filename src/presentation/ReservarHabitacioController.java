@@ -26,7 +26,15 @@ public class ReservarHabitacioController {
 		} else if (numOcupants <= 0) {
 			reservarHabitacioView.mostraMissatge("Nombre d'ocupants invàlid");
 		} else {
-			ArrayList<String> poblacions = ctrlReservar.obtenirPoblacions();
+			ArrayList<String> poblacions = new ArrayList<String>();
+                        try {
+                            poblacions = ctrlReservar.obtenirPoblacions();
+                        } catch (Exception ex) {
+                            if (ex.getMessage().equals("noHiHaPoblacions"))
+                                reservarHabitacioView
+						.mostraMissatge("La poblacio no es troba al sistema");
+                            else ex.printStackTrace();
+                        }
 			if (!poblacions.contains(poblacio)) {
 				reservarHabitacioView
 						.mostraMissatge("La poblacio no es troba al sistema");

@@ -179,7 +179,8 @@ public class trBuscarHabitacionsTest {
         Hotel h = new Hotel("Hotel3", "desc", "Categoria1", "Milan");
         HabitacioId hId = new HabitacioId("Hotel3", 3);
         TipusHabitacio tipusHab = new TipusHabitacio("Suite3", 3, "descHabitacio");
-        PreuTipusHabitacio preuTipusHab = new PreuTipusHabitacio(new PreuTipusHabitacioId("Hotel3", "Suite3"), 1000d);
+        IPreuStrategy descompte = new PreuAmbDescompte(new PreuTipusHabitacioId("Hotel3", "Suite3"), 300f);
+        PreuTipusHabitacio preuTipusHab = new PreuTipusHabitacio(new PreuTipusHabitacioId("Hotel3", "Suite3"), 1000f, descompte);
         Habitacio hab = new Habitacio(hId, "Suite3");
         Reserva res = new Reserva(new ReservaId("Hotel3", 3, new Date(100)), new Date(100), new Date(101), 1000d);
         
@@ -188,6 +189,7 @@ public class trBuscarHabitacionsTest {
         session.saveOrUpdate(h);
         session.saveOrUpdate(tipusHab);
         session.saveOrUpdate(preuTipusHab);
+        session.saveOrUpdate(descompte);
         session.saveOrUpdate(hab);
         session.saveOrUpdate(res);
         session.getTransaction().commit();
@@ -202,7 +204,8 @@ public class trBuscarHabitacionsTest {
         Hotel h = new Hotel("Hotel2", "desc", "Categoria1", "Barcelona");
         HabitacioId hId = new HabitacioId("Hotel2", 2);
         TipusHabitacio tipusHab = new TipusHabitacio("Suite2", 3, "descHabitacio");
-        PreuTipusHabitacio preuTipusHab = new PreuTipusHabitacio(new PreuTipusHabitacioId("Hotel2", "Suite2"), 1000d);
+        IPreuStrategy descompte = new PreuAmbDescompte(new PreuTipusHabitacioId("Hotel2", "Suite2"), 300f);
+        PreuTipusHabitacio preuTipusHab = new PreuTipusHabitacio(new PreuTipusHabitacioId("Hotel2", "Suite2"), 1000f, descompte);
         Habitacio hab = new Habitacio(hId, "Suite2");
         Reserva res = new Reserva(new ReservaId("Hotel2", 2, new Date(100)), new Date(100), new Date(101), 1000d);
         
@@ -211,6 +214,7 @@ public class trBuscarHabitacionsTest {
         session.saveOrUpdate(h);
         session.saveOrUpdate(tipusHab);
         session.saveOrUpdate(preuTipusHab);
+        session.saveOrUpdate(descompte);
         session.saveOrUpdate(hab);
         session.saveOrUpdate(res);
         session.getTransaction().commit();
@@ -225,7 +229,8 @@ public class trBuscarHabitacionsTest {
         Hotel h = new Hotel("Hotel4", "desc", "Categoria1", "Paris");
         HabitacioId hId = new HabitacioId("Hotel4", 2);
         TipusHabitacio tipusHab = new TipusHabitacio("Suite3", 3, "descHabitacio");
-        PreuTipusHabitacio preuTipusHab = new PreuTipusHabitacio(new PreuTipusHabitacioId("Hotel4", "Suite3"), 1000d);
+        IPreuStrategy descompte = new PreuAmbDescompte(new PreuTipusHabitacioId("Hotel4", "Suite3"), 300f);
+        PreuTipusHabitacio preuTipusHab = new PreuTipusHabitacio(new PreuTipusHabitacioId("Hotel4", "Suite3"), 1000f, descompte);
         Habitacio hab = new Habitacio(hId, "Suite3");
         Reserva res = new Reserva(new ReservaId("Hotel4", 2, new Date(100)), new Date(100), new Date(101), 1000d);
         
@@ -242,6 +247,7 @@ public class trBuscarHabitacionsTest {
         session.saveOrUpdate(h);
         session.saveOrUpdate(tipusHab);
         session.saveOrUpdate(preuTipusHab);
+        session.saveOrUpdate(descompte);
         session.saveOrUpdate(hab);
         session.saveOrUpdate(hab2);
         session.saveOrUpdate(hab3);
@@ -262,6 +268,10 @@ public class trBuscarHabitacionsTest {
         Query query = session.createQuery("delete from Reserva");
         query.executeUpdate();
         query = session.createQuery("delete from Habitacio");
+        query.executeUpdate();
+        query = session.createQuery("delete from PreuAmbDescompte");
+        query.executeUpdate();
+        query = session.createQuery("delete from PreuAmbPercentatge");
         query.executeUpdate();
         query = session.createQuery("delete from PreuTipusHabitacio");
         query.executeUpdate();

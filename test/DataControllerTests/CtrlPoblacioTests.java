@@ -10,6 +10,8 @@ import Factories.CtrlDataFactoria;
 import Hibernate.NewHibernateUtil;
 import domainModel.Poblacio;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.hibernate.Session;
 import org.junit.*;
 import static org.junit.Assert.*;
@@ -58,8 +60,11 @@ public class CtrlPoblacioTests {
     
     @Test
     public void testGet() {
-        
-        Assert.assertNotNull(cp.getPoblacio("1"));
+        try {
+            Assert.assertNotNull(cp.getPoblacio("1"));
+        } catch (Exception ex) {
+            fail();
+        }
     }
     
     @After

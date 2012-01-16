@@ -2,8 +2,8 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 13-ene-2012 19:46:24 by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
-  <class name="Strategies.PreuAmbDescompte" schema="ROOT" table="PREU_AMB_DESCOMPTE">
-    <composite-id class="Strategies.PreuAmbDescompteId" name="id">
+  <class name="Strategies.IPreuStrategy" schema="ROOT" table="PREUSTRATEGY">
+    <composite-id class="domainModel.PreuTipusHabitacioId" name="id">
       <key-property name="nomHotel" type="string">
         <column length="50" name="NOM_HOTEL"/>
       </key-property>
@@ -11,8 +11,19 @@
         <column length="50" name="NOMTIPUS"/>
       </key-property>
     </composite-id>
-    <property name="descompte" type="java.lang.Double">
-      <column name="DESCOMPTE" precision="52" scale="0"/>
-    </property>
+  <discriminator type="java.lang.String">
+    <formula>
+      case 
+        when PERCENTATGE is not null then 'P' 
+        else 'A' 
+      end
+    </formula>
+  </discriminator>
+  <subclass name="Strategies.PreuAmbDescompte" discriminator-value="A">
+      <property name="descompte" column="DESCOMPTE"/>
+  </subclass>
+  <subclass name="Strategies.PreuAmbPercentatge" discriminator-value="P">
+        <property name="percentatge" column="PERCENTATGE"/>
+  </subclass>
   </class>
 </hibernate-mapping>

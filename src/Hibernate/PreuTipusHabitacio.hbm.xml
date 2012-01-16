@@ -11,8 +11,9 @@
         <column length="50" name="NOMTIPUS"/>
       </key-property>
     </composite-id>
-    <property name="preu" type="java.lang.Double">
+    <property name="preu" type="java.lang.Float">
       <column name="PREU" precision="52" scale="0"/>
     </property>
+    <one-to-one name="estrategia" class="Strategies.IPreuStrategy" />
   </class>
 </hibernate-mapping>

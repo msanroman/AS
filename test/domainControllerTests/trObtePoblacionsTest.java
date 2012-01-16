@@ -60,20 +60,16 @@ public class trObtePoblacionsTest {
         }
         
         ArrayList<String> actual = tx.obtenirResultat();
-        Assert.assertEquals(actual.size(), 5);
+        Assert.assertEquals(5, actual.size());
         int j = 0;
         for(String nom : actual) {
             Assert.assertEquals("Poblacio " + String.valueOf(j), nom);
             ++j;
         }
-        
-        deletePoblacions();
-        
     }
 
     private void deletePoblacions() throws HibernateException {
-        
-        Session session = NewHibernateUtil.getSessionFactory().openSession();
+        Session session = NewHibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
         Query query = session.createQuery("delete from Poblacio");
         query.executeUpdate();
@@ -92,10 +88,6 @@ public class trObtePoblacionsTest {
     
     @After
     public void tearDown() {
+        deletePoblacions();
     }
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
 }

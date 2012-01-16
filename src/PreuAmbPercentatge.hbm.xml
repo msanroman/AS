@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 13-ene-2012 19:46:24 by Hibernate Tools 3.2.1.GA -->
-<hibernate-mapping>
+ Generated 13-ene-2012 19:46:24 by Hibernate Tools 3.2.1.GA 
+<hibernate-mapping><!--
   <class name="Strategies.PreuAmbPercentatge" schema="ROOT" table="PREU_AMB_PERCENTATGE">
     <composite-id class="Strategies.PreuAmbPercentatgeId" name="id">
       <key-property name="nomHotel" type="string">
         <column length="50" name="NOM_HOTEL"/>
       </key-property>
       <key-property name="nomtipus" type="string">
-        <column length="50" name="NOMTIPUS"/>
+        <column length="50" name="NOM_TIPUS"/>
       </key-property>
     </composite-id>
-    <property name="percentatge" type="java.lang.Double">
+    <property name="percentatge" type="java.lang.Float">
       <column name="PERCENTATGE" precision="52" scale="0"/>
     </property>
   </class>
-</hibernate-mapping>
+--></hibernate-mapping>

@@ -2,6 +2,7 @@ package Strategies;
 // Generated 13-ene-2012 19:46:20 by Hibernate Tools 3.2.1.GA
 
 import domainModel.PreuTipusHabitacio;
+import domainModel.PreuTipusHabitacioId;
 
 
 
@@ -12,40 +13,45 @@ import domainModel.PreuTipusHabitacio;
 public class PreuAmbPercentatge  implements java.io.Serializable, IPreuStrategy {
 
 
-    private PreuAmbPercentatgeId id;
-    private Double percentatge;
+    private PreuTipusHabitacioId id;
+    private Float percentatge;
 
     public PreuAmbPercentatge() {
     }
 
 	
-    public PreuAmbPercentatge(PreuAmbPercentatgeId id) {
+    public PreuAmbPercentatge(PreuTipusHabitacioId id) {
         this.id = id;
     }
-    public PreuAmbPercentatge(PreuAmbPercentatgeId id, Double percentatge) {
+    public PreuAmbPercentatge(PreuTipusHabitacioId id, Float percentatge) {
        this.id = id;
        this.percentatge = percentatge;
     }
-   
-    public PreuAmbPercentatgeId getId() {
-        return this.id;
-    }
-    
-    public void setId(PreuAmbPercentatgeId id) {
-        this.id = id;
-    }
-    public Double getPercentatge() {
+
+    public Float getPercentatge() {
         return this.percentatge;
     }
     
-    public void setPercentatge(Double percentatge) {
+    public void setPercentatge(Float percentatge) {
         this.percentatge = percentatge;
     }
 
     @Override
     public float getPreu(PreuTipusHabitacio preuTipus) {
 
-        return (float) (preuTipus.getPreu()*(1-percentatge));
+        return (preuTipus.getPreu()*(1-percentatge));
+    }
+
+    @Override
+    public PreuTipusHabitacioId getId() {
+
+        return this.id;
+    }
+
+    @Override
+    public void setId(PreuTipusHabitacioId id) {
+
+        this.id = id;
     }
 
 
