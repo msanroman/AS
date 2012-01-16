@@ -44,7 +44,7 @@ public class trPagament extends Transaccio {
             ICtrlHabitacio ch = CtrlDataFactoria.getInstance().getCtrlHabitacio();
             Client c = cc.getClient(this.dni);
             Habitacio h = ch.getHabitacio(numHab, nomHotel);
-            Reserva r = new Reserva(new ReservaId(nomHotel, numHab, this.dIni),
+            Reserva r = new Reserva(nomHotel, numHab, this.dIni,
                     new Date(), this.dFi, (double) this.preuTotal);
             h.afegeixReserva(r);
             c.afegeixReserva(r);

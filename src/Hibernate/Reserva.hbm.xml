@@ -3,25 +3,23 @@
 <!-- Generated 13-ene-2012 19:46:24 by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
   <class name="domainModel.Reserva" schema="ROOT" table="RESERVA">
-    <composite-id class="domainModel.ReservaId" name="id">
-      <key-property name="nomHotel" type="string">
-        <column length="50" name="NOM_HOTEL"/>
-      </key-property>
-      <key-property name="numero" type="int">
-        <column name="NUMERO"/>
-      </key-property>
-      <key-property name="dataInici" type="timestamp">
-        <column length="26" name="DATA_INICI"/>
-      </key-property>
-    </composite-id>
+    <id name="idReserva" column="ID_RESERVA" type="java.lang.Integer">
+        <generator class="identity"></generator>
+    </id>
+    <property name="nomHotel" type="string">
+    <column length="50" name="NOM_HOTEL"/>
+    </property>
+    <property name="numero" type="int">
+    <column name="NUMERO"/>
+    </property>
+    <property name="dataInici" type="timestamp">
+    <column length="26" name="DATA_INICI"/>
+    </property>
     <property name="dataReserva" type="timestamp">
       <column length="26" name="DATA_RESERVA"/>
     </property>
     <property name="dataFi" type="timestamp">
       <column length="26" name="DATA_FI"/>
-    </property>
-    <property name="idReserva" type="java.lang.Integer">
-      <column name="ID_RESERVA"/>
     </property>
     <property name="preuTotal" type="java.lang.Double">
       <column name="PREU_TOTAL" precision="52" scale="0"/>

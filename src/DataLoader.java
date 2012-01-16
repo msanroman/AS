@@ -78,8 +78,8 @@ public class DataLoader {
         
         Habitacio hab = new Habitacio(hId, "Suite");
         Habitacio hab2 = new Habitacio(hId0, "Standard");
-        Reserva res = new Reserva(new ReservaId("Hotel Manresa", 1, new Date(100)), new Date(100), new Date(101), 500d);
-        Reserva res2 = new Reserva(new ReservaId("Hotel Pastel Manresa", 2, new Date(100)), new Date(100), new Date(101), 150d);
+        Reserva res = new Reserva("Hotel Manresa", 1, new Date(100), new Date(100), new Date(101), 500d);
+        Reserva res2 = new Reserva("Hotel Pastel Manresa", 2, new Date(100), new Date(100), new Date(101), 150d);
 
         session.saveOrUpdate(p);
         session.saveOrUpdate(c);
@@ -91,6 +91,10 @@ public class DataLoader {
         session.saveOrUpdate(preuTipusHab2);
         session.saveOrUpdate(preuTipusHab3);
         session.saveOrUpdate(preuTipusHab4);
+        session.saveOrUpdate(descompte);
+        session.saveOrUpdate(descompte2);
+        session.saveOrUpdate(descompte3);
+        session.saveOrUpdate(descompte4);
         session.saveOrUpdate(hab);
         session.saveOrUpdate(hab2);
         session.saveOrUpdate(res);

@@ -89,7 +89,7 @@ public class Habitacio implements java.io.Serializable{
                 if (this.reserves != null) {
                     for(Reserva r: this.reserves) {
                         if(r.getDataFi().getTime() >= dIni.getTime()) {
-                            if(r.getId().getDataInici().getTime() <= dFi.getTime()) return false;
+                            if(r.getDataInici().getTime() <= dFi.getTime()) return false;
                         }
                                     
                     }

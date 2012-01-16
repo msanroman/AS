@@ -40,7 +40,7 @@ public class CtrlClientTests {
     }
 
     @Test
-    public void testGet() {
+    public void testGet() throws Exception {
         
         Client actual = cc.getClient("46975089G");
         Assert.assertEquals(expected.getNom(), actual.getNom());

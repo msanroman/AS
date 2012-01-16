@@ -65,14 +65,14 @@ public class VistaHotelsTipusHab extends JPanel {
 			noms[i] = informacioHotels.get(i).infoHotel.nom;
 		}
 		
-		JComboBox<String> comboBox = new JComboBox<String>(noms);
+		JComboBox comboBox = new JComboBox(noms);
 		horizontalBox.add(comboBox);
 
 		comboBox.addItemListener(new ItemListener() {
 			@Override
 			public void itemStateChanged(ItemEvent arg0) {
 				@SuppressWarnings("unchecked")
-				JComboBox<String> aux = (JComboBox<String>) arg0.getSource();
+				JComboBox aux = (JComboBox) arg0.getSource();
 				hotelSeleccionat = informacioHotels.get(aux.getSelectedIndex());
 				actualitzaInformacio(hotelSeleccionat.habitacions);
 			}
