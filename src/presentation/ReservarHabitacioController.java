@@ -44,7 +44,7 @@ public class ReservarHabitacioController {
 					resultat = ctrlReservar.buscarHabitacions(poblacio,
 							dataInici, dataFi, numOcupants);
 				} catch (Exception e) {
-					if (e.getMessage().equals("hotelsNoDisp")) {
+					if (e.getMessage()=="hotelsNoDisp") {
 						reservarHabitacioView
 								.mostraMissatge("No hi han hotels disponibles");
 					} else {

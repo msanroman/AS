@@ -6,6 +6,8 @@ import Strategies.PreuAmbPercentatge;
 
 import domainModel.*;
 import java.util.Date;
+import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 
 /*
@@ -95,4 +97,29 @@ public class DataLoader {
         session.saveOrUpdate(res2);
         session.getTransaction().commit();
    }
+    
+    public void clearDatabase() throws HibernateException {
+        
+        Session session = NewHibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        Query query = session.createQuery("delete from Reserva");
+        query.executeUpdate();
+        query = session.createQuery("delete from Habitacio");
+        query.executeUpdate();
+        query = session.createQuery("delete from PreuAmbDescompte");
+        query.executeUpdate();
+        query = session.createQuery("delete from PreuAmbPercentatge");
+        query.executeUpdate();
+        query = session.createQuery("delete from PreuTipusHabitacio");
+        query.executeUpdate();
+        query = session.createQuery("delete from TipusHabitacio");
+        query.executeUpdate();
+        query = session.createQuery("delete from Hotel");
+        query.executeUpdate();
+        query = session.createQuery("delete from Categoria");
+        query.executeUpdate();
+        query = session.createQuery("delete from Poblacio");
+        query.executeUpdate();
+        session.getTransaction().commit();
+    }
 }
