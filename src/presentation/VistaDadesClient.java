@@ -4,6 +4,7 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.swing.Box;
@@ -96,9 +97,12 @@ public class VistaDadesClient extends JPanel {
 	}
 
 	public Date getDataCaducitat() {
-		return new Date(Integer.parseInt(textFieldDataAny.getText()),
-				Integer.parseInt(textFieldDataMes.getText()),
-				Integer.parseInt(textFieldDataDia.getText()));
+		
+		Calendar calendar = Calendar.getInstance();
+		calendar.set(Calendar.DAY_OF_MONTH, Integer.parseInt(textFieldDataDia.getText()));
+		calendar.set(Calendar.MONTH, Integer.parseInt(textFieldDataMes.getText()));
+		calendar.set(Calendar.YEAR, Integer.parseInt(textFieldDataAny.getText()));
+		return calendar.getTime();
 	}
 
 	class TextFieldChangeListener implements KeyListener {

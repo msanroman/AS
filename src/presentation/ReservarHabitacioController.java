@@ -6,7 +6,7 @@ import java.util.Date;
 import tupleTypes.DadesClient;
 import tupleTypes.DadesSeleccionarHabitacio;
 import tupleTypes.HotelAmbHabitacions;
-import domainControllers.CtrlReservar;
+import presentation.CtrlReservar;
 
 public class ReservarHabitacioController {
 
@@ -39,6 +39,7 @@ public class ReservarHabitacioController {
 				reservarHabitacioView
 						.mostraMissatge("La poblacio no es troba al sistema");
 			} else {
+				boolean b = true;
 				ArrayList<HotelAmbHabitacions> resultat = new ArrayList<HotelAmbHabitacions>();
 				try {
 					resultat = ctrlReservar.buscarHabitacions(poblacio,
@@ -50,8 +51,10 @@ public class ReservarHabitacioController {
 					} else {
 						e.printStackTrace();
 					}
+					b = false;
 				}
-				reservarHabitacioView.mostraHotelsTipusHab(resultat);
+				if (b)
+					reservarHabitacioView.mostraHotelsTipusHab(resultat);
 			}
 		}
 	}

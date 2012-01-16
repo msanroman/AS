@@ -7,8 +7,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import javax.swing.Box;
 import javax.swing.JButton;
@@ -100,19 +101,23 @@ public class VistaInicial extends JFrame {
 			public void actionPerformed(ActionEvent e) {// TODO
 				switch (state) {
 				case FIRST:
+					Calendar calendarInici = Calendar.getInstance();
+					calendarInici.set(Calendar.DAY_OF_MONTH, Integer.parseInt(textFieldDataIniciDia.getText()));
+					calendarInici.set(Calendar.MONTH, Integer.parseInt(textFieldDataIniciMes.getText()));
+					calendarInici.set(Calendar.YEAR, Integer.parseInt(textFieldDataIniciAny.getText()));
+
+					Calendar calendarFi = Calendar.getInstance();
+					calendarFi.set(Calendar.DAY_OF_MONTH, Integer.parseInt(textFieldDataFiDia.getText()));
+					calendarFi.set(Calendar.MONTH, Integer.parseInt(textFieldDataFiMes.getText()));
+					calendarFi.set(Calendar.YEAR, Integer.parseInt(textFieldDataFiAny.getText()));
+					
+					Date dataInici = calendarInici.getTime();
+					Date dataFi = calendarFi.getTime();
+					
 					reservarHabitacioController.prOkBuscarHabitacio(
 							textFieldPoblacio.getText(),
 							Integer.parseInt(textFieldNumOcupants.getText()),
-							new Date(Integer.parseInt(textFieldDataIniciAny
-									.getText()), Integer
-									.parseInt(textFieldDataIniciMes.getText()),
-									Integer.parseInt(textFieldDataIniciDia
-											.getText())),
-							new Date(Integer.parseInt(textFieldDataFiAny
-									.getText()), Integer
-									.parseInt(textFieldDataFiMes.getText()),
-									Integer.parseInt(textFieldDataFiDia
-											.getText())));
+							dataInici, dataFi);
 					break;
 				case HOTELS:
 					reservarHabitacioController.prOkObtePreu(
