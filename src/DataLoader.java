@@ -1,5 +1,8 @@
 
 import Hibernate.NewHibernateUtil;
+import Strategies.IPreuStrategy;
+import Strategies.PreuAmbDescompte;
+import Strategies.PreuAmbPercentatge;
 
 import domainModel.*;
 import java.util.Date;
@@ -27,10 +30,10 @@ import org.hibernate.Session;
 
 -- PreuTipusHabitacio --
 
-1. ManresaSuite500
-2. ManresaStandard250
-3. PastelManresaSuite400
-4. PastelManresaStandard150
+1. ManresaSuite500minus100
+2. ManresaStandard300minus100
+3. PastelManresaSuite400/2
+4. PastelManresaStandard200/2
 5. PrincesaSuite1000
 6. PrincesaStandard600
 
@@ -61,10 +64,15 @@ public class DataLoader {
         TipusHabitacio tipusHab = new TipusHabitacio("Suite", 3, "descHabitacio");
         TipusHabitacio tipusHab2 = new TipusHabitacio("Standard", 3, "descHabitacio");
         
-        PreuTipusHabitacio preuTipusHab = new PreuTipusHabitacio(new PreuTipusHabitacioId("Hotel Manresa", "Suite"), 500d);
-        PreuTipusHabitacio preuTipusHab2 = new PreuTipusHabitacio(new PreuTipusHabitacioId("Hotel Manresa", "Standard"), 250d);
-        PreuTipusHabitacio preuTipusHab3 = new PreuTipusHabitacio(new PreuTipusHabitacioId("Hotel Pastel Manresa", "Suite"), 400d);
-        PreuTipusHabitacio preuTipusHab4 = new PreuTipusHabitacio(new PreuTipusHabitacioId("Hotel Pastel Manresa", "Standard"), 150d);
+        IPreuStrategy descompte = new PreuAmbDescompte(new PreuTipusHabitacioId("Hotel Manresa", "Suite"), 100f);
+        IPreuStrategy descompte2 = new PreuAmbDescompte(new PreuTipusHabitacioId("Hotel Manresa", "Standard"), 100f);
+        IPreuStrategy descompte3 = new PreuAmbPercentatge(new PreuTipusHabitacioId("Hotel Pastel Manresa", "Suite"), 0.5f);
+        IPreuStrategy descompte4 = new PreuAmbPercentatge(new PreuTipusHabitacioId("Hotel Pastel Manresa", "Standard"), 0.5f);
+        
+        PreuTipusHabitacio preuTipusHab = new PreuTipusHabitacio(new PreuTipusHabitacioId("Hotel Manresa", "Suite"), 500f, descompte);
+        PreuTipusHabitacio preuTipusHab2 = new PreuTipusHabitacio(new PreuTipusHabitacioId("Hotel Manresa", "Standard"), 300f, descompte2);
+        PreuTipusHabitacio preuTipusHab3 = new PreuTipusHabitacio(new PreuTipusHabitacioId("Hotel Pastel Manresa", "Suite"), 400f, descompte3);
+        PreuTipusHabitacio preuTipusHab4 = new PreuTipusHabitacio(new PreuTipusHabitacioId("Hotel Pastel Manresa", "Standard"), 200f, descompte4);
         
         Habitacio hab = new Habitacio(hId, "Suite");
         Habitacio hab2 = new Habitacio(hId0, "Standard");

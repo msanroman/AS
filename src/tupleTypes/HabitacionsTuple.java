@@ -4,9 +4,9 @@ public class HabitacionsTuple {
 	
 	public String tipusHabitacio;
 	public int numeroDisponibles;
-	public double preu;
+	public float preu;
 
-	public HabitacionsTuple(String tipus, int numeroDisponibles, double preuTotal) {
+	public HabitacionsTuple(String tipus, int numeroDisponibles, float preuTotal) {
 		
 		this.tipusHabitacio = tipus;
 		this.numeroDisponibles = numeroDisponibles;
